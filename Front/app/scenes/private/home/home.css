@@ -4,6 +4,7 @@
 
 .hidden {
     display: none;
+    justify-content: center;
 }
 
 .loader {
@@ -17,6 +18,36 @@
 
 .loader:before {
     content: "Cargando..."
+}
+
+.home_elements {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.home_users_container {
+    width: 100%;
+    margin: 20px auto;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home_user_card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    min-width: 200px;
+    max-width: 1000px;
+    height: 500px;
 }
 
 @keyframes l4 {

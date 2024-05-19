@@ -1,9 +1,8 @@
 const { pool } = require("../config/database");
 
 exports.getAll = async () => {
-  const query = `SELECT * FROM users`;
-  const { rows } = await pool.query(query);
-  return rows;
+  const users = await pool.query("SELECT * FROM users");
+  return users.rows;
 };
 
 exports.save = async (username, email, hashedPassword) => {
@@ -16,7 +15,7 @@ exports.save = async (username, email, hashedPassword) => {
 };
 
 exports.update = async (id, data) => {
-    const query = `UPDATE users
+  const query = `UPDATE users
                   SET username = $1, email = $2, password = $3
                   WHERE id = $4
                   RETURNING id, username, email`;

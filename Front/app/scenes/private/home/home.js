@@ -11,10 +11,13 @@ export function HomeScene() {
   `;
 
   const pageContent = `
-  <div class="${styles.hidden}" id="home_container">
-    <h2>Home</h2>
-    <p>Welcome to the home view.</p>
+  <div class="${styles.home_elements} ${styles.hidden}" id="home_container">
+    <div>
+      <h2>Home</h2>
+      <p>Welcome to the home view.</p>
+    </div>
     <div id="user-info"></div>
+    <div id="all-users" class="${styles.home_users_container}"></div>
     ${footer}
   </div>
   <div class="${styles.loader}" id="loader">
@@ -50,12 +53,13 @@ export function HomeScene() {
           name: companyName, catchPhrase, bs
         }
       }) => {
+        const theUser = JSON.parse(localStorage.getItem('user'));
         const userInfo = document.getElementById('user-info');
         userInfo.innerHTML = `
-        <p>User: ${id}</p>
+        <p>User: ${theUser.id}</p>
         <p>Name: ${name}</p>
-        <p>Username: ${username}</p>
-        <p>Email: ${email}</p>
+        <p>Username: ${theUser.username}</p>
+        <p>Email: ${theUser.email}</p>
         <p>Address: ${street}, ${suite}, ${city}, ${zipcode}</p>
         <p>Geo: ${lat}, ${lng}</p>
         <p>Phone: ${phone}</p>
@@ -65,6 +69,27 @@ export function HomeScene() {
         <p>BS: ${bs}</p>
         `;
         // Finalmente, ocultamos el loader y mostramos el div
+      })
+
+    fetch('http://localhost:4000/api/users', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        const userInfo = document.getElementById('all-users');
+        data.forEach(user => {
+          userInfo.innerHTML += `
+          <div><a href="/dashboard/users/${user.id}" class="${styles.home_user_card}">
+            <p>User: ${user.id}</p>
+            <p>Username: ${user.username}</p>
+            <p>Email: ${user.email}</p>
+            <p>Points: ${user.points}</p>
+          </a></div>
+        `;})
         document.querySelector(`#loader`).classList.add(styles.hidden);
         document.getElementById('home_container').classList.remove(styles.hidden);
       })

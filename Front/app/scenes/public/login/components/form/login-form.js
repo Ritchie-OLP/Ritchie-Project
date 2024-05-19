@@ -26,9 +26,12 @@ export async function LoginFormComponent() {
       alert('Please fill in all fields');
       return;
     }
-    const token = await login(email, password);
-    if (token) {
+    const logdata = await login(email, password);
+    const token = logdata.token;
+    const user = logdata.user;
+    if (logdata) {
       localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(user));
       navigateTo('/dashboard');
     } else {
       alert('Invalid credentials');
@@ -52,7 +55,7 @@ async function login(email, password) {
     }
 
     const data = await response.json();
-    return data.token;
+    return data;
   } catch (error) {
     console.error('Login failed:', error);
     return null;
