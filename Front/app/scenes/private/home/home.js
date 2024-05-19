@@ -87,6 +87,7 @@ export function HomeScene() {
             <p>User: ${user.id}</p>
             <p>Username: ${user.username}</p>
             <p>Email: ${user.email}</p>
+            <p>Points: ${user.points}</p>
           </a></div>
         `;})
         document.querySelector(`#loader`).classList.add(styles.hidden);
