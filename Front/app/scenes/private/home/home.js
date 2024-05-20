@@ -1,5 +1,6 @@
 import styles from './home.css';
 import { ReportScene } from '../reports'
+import testbg from '../../../assets/testbg.gif'
 
 export function HomeScene() {
 
@@ -13,8 +14,8 @@ export function HomeScene() {
   const pageContent = `
   <div class="${styles.home_elements} ${styles.hidden}" id="home_container">
     <div>
-      <h2>Home</h2>
-      <p>Welcome to the home view.</p>
+      <h1>RIWI Learning Platform</h1>
+      <p>Welcome to RIWI's Learning Platform, where you'll be able to step up your programming skills.</p>
     </div>
     <div id="user-info"></div>
     <div id="all-users" class="${styles.home_users_container}"></div>
@@ -25,52 +26,6 @@ export function HomeScene() {
   `;
 
   const logic = () => {
-    fetch(`https://jsonplaceholder.typicode.com/users/${randomNumber}`)
-      .then(response => response.json())
-      // .then(json => {
-      //   // Primero, obtenemos el elemento en dodne deseamos insetar el usuario
-      //   const userInfo = document.getElementById('user-info');
-      //   // Luego, creamos dos elementos de tipo p
-      //   const pId = document.createElement('p');
-      //   const pName = document.createElement('p');
-      //   // Luego, mostramos el ID
-      //   pId.innerText = `User: ${json.id}`;
-      //   // Luego, mostramos el nombre
-      //   pName.innerText = `Name: ${json.name}`;
-      //   // Acto seguido insertamos los elementos en el div
-      //   userInfo.appendChild(pId);
-      //   userInfo.appendChild(pName);
-      //   // Finalmente, mostramos el div
-      //   document.getElementById('home_container').classList.remove(styles.hidden);
-      // })
-      .then(({
-        id, name, username, email, address: {
-          street, suite, city, zipcode, geo: {
-            lat, lng
-          }
-        },
-        phone, website, company: {
-          name: companyName, catchPhrase, bs
-        }
-      }) => {
-        const theUser = JSON.parse(localStorage.getItem('user'));
-        const userInfo = document.getElementById('user-info');
-        userInfo.innerHTML = `
-        <p>User: ${theUser.id}</p>
-        <p>Name: ${name}</p>
-        <p>Username: ${theUser.username}</p>
-        <p>Email: ${theUser.email}</p>
-        <p>Address: ${street}, ${suite}, ${city}, ${zipcode}</p>
-        <p>Geo: ${lat}, ${lng}</p>
-        <p>Phone: ${phone}</p>
-        <p>Website: ${website}</p>
-        <p>Company: ${companyName}</p>
-        <p>Catch Phrase: ${catchPhrase}</p>
-        <p>BS: ${bs}</p>
-        `;
-        // Finalmente, ocultamos el loader y mostramos el div
-      })
-
     fetch('http://localhost:4000/api/users', {
       method: 'GET',
       headers: {
@@ -83,12 +38,10 @@ export function HomeScene() {
         const userInfo = document.getElementById('all-users');
         data.forEach(user => {
           userInfo.innerHTML += `
-          <div><a href="/dashboard/users/${user.id}" class="${styles.home_user_card}">
-            <p>User: ${user.id}</p>
-            <p>Username: ${user.username}</p>
-            <p>Email: ${user.email}</p>
-            <p>Points: ${user.points}</p>
-          </a></div>
+            <a href="/dashboard/users/${user.id}" class="${styles.home_user_card}">
+              <h2>Route: ${user.id}</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nunc lectus, aliquam vitae volutpat id, vestibulum ac ante. Nam eleifend feugiat dui id laoreet. Fusce sodales molestie fringilla. Praesent vestibulum aliquam urna, eu feugiat quam. Cras tincidunt, risus eu aliquam pulvinar, est nibh congue purus, sed mollis nunc velit porta mi. Phasellus vitae ultricies velit. Etiam sem dolor, pretium a augue at, tincidunt sollicitudin purus. Cras tempus accumsan quam, non pretium massa congue et. Aenean in mattis orci. Proin ipsum arcu, scelerisque vel ultrices vitae, eleifend at dui. Mauris vel enim ac ipsum gravida viverra. Donec tempus enim quis lorem interdum, vitae efficitur nisi vehicula. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Duis feugiat arcu faucibus ipsum posuere, quis pretium augue auctor.</p>
+            </a>
         `;})
         document.querySelector(`#loader`).classList.add(styles.hidden);
         document.getElementById('home_container').classList.remove(styles.hidden);
