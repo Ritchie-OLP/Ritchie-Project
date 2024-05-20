@@ -8,7 +8,7 @@
         "build": "webpack --mode production"
     },
     "dependencies": {
-        "three.js": "^0.77.1"
+        "three.js": "^0.77.0"
     },
     "devDependencies": {
         "@babel/core": "^7.0.0",
