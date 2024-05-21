@@ -19,5 +19,5 @@
 
 .main {
     grid-area: main;
-    padding: var(--spacing-3);
+    /* padding: var(--spacing-3); */
 }

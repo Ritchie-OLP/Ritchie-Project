@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10&family=Martian+Mono:wght@100..800&family=Rubik+Scribble&family=Truculenta:opsz,wght@12..72,100..900&family=Workbench&display=swap');
+
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    width: 100%;
+    height: 100vh;
+    padding: 0;
+    position: relative;
+
+
+}
+
+.fontTitles{
+    font-family: "Workbench", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+      "BLED" 0,
+      "SCAN" 0;
+    
+}
+
+.title{
+    padding: 2%;
+    margin: 0 auto;
+    text-align: center;
+    color: rgb(106, 112, 198);
+    border: 2px inset rgb(106, 112, 198);
+    width: 70%;
+
+
+}
+
+.containerEditor{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0%;
+    z-index: -1;
+}
+
+.containerEditor img{
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.contIconos{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5vh;
+    margin: auto;
+    border-radius: 50%;
+}
+
+.contIconos img{
+    object-fit: cover;
+    width: 18vw;
+    height: 25vh;
+}
+
+
+.iconContainer{
+    object-fit: cover;
+    animation: miAnimacion 5s infinite linear;
+
+}
+.iconContainer{
+    width: 20vw;
+}
+
+
+.icono:hover{
+    width: 20vw;
+    height: 30vh;
+    box-shadow: 5px 5px 5px 5px bisque;
+    border-radius: 50%;
+}
+
+
+@keyframes miAnimacion {
+    0% { transform: translateY(0); opacity: 1;} /* Comienza en el centro */
+    25% {transform: translateY(-5%); opacity: 1;} /* Sube */
+    50% { transform: translateY(0); opacity: 1;} /* Regresa al centro */
+    75% {transform: translateY(5%); opacity: 1;} /* Baja */
+    100% { transform: translateY(0); opacity: 1;} /* Regresa al centro */
+}
+
+@keyframes rotate {
+    from{transform: rotate3d(1,0,0,0deg);}
+    to{transform: rotate3d(1,0,0,360deg);}
+}
+
+.contPaRem{
+    position: relative;
+}
+
+.pIcon{
+    padding: 2%;
+    text-align: center;
+    width: 8vw;
+    font-size: 1.5em;
+    position: absolute;
+
+}
+
+.pHtml{
+    top:64%;
+    left: 30%;
+    color: rgb(181, 80, 80);
+}
+.pCss{
+    color: rgb(85, 141, 187);
+    top:28%;
+    left: 30%;
+}
+.pJs{
+    color: rgb(213, 224, 111);
+    top:64%;
+    left: 30%;
+    font-size: 1.2em;
+}

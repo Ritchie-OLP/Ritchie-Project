@@ -15,6 +15,7 @@ if (!customElements.get('navigation-bar')) {
           <li><a href="#reports">Reports</a></li>
           <li><a href="#settings">Settings</a></li>
           <li><a href="#logout">Logout</a></li>
+          <li><a href="#routes">Routes</a></li>
         </ul>
       `;
       shadow.appendChild(nav);
