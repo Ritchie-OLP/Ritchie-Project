@@ -41,12 +41,15 @@ export function Modules(){
             </div>
 
             <div class=${styles.contModules}>
-                ${modules.map((module, idx) => `
-                    <div id="module${idx}" class="${styles.contIconModules} ${styles["mod" + (idx + 1)]}">
+                ${modules.map((module, idx) => {
+                    if (idx > 7){
+                        return
+                    }
+                    return `<div id="module${idx}" class="${styles.contIconModules} ${styles["mod" + (idx + 1)]}">
                     <img src=${arrayImages[idx]} class=${styles.iconMod} alt="icon + ${idx + 1}">
                     </div>
                 
-                `)}
+                `})}
 
                 // <img src=${iconoJS} alt="js-icon" class=${styles.iconJs}>
             </div>

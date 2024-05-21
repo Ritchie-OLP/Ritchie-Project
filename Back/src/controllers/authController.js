@@ -35,7 +35,7 @@ exports.login = async (req, res) => {
     console.log(email, user);
     if (!user) {
       console.log("Usuario no existe");
-      return res.status(400).json({ message: 'Ese Usuario no existe' });
+      return res.json({ message: 'Ese Usuario no existe', token: 'notvalid' });
     }
 
     // Comparar contraseñas
@@ -46,10 +46,10 @@ exports.login = async (req, res) => {
 
     // Generar token JWT
     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-      expiresIn: '1h',
+      expiresIn: '12h',
     });
 
-    res.json({ token, user: { id: user.id, username: user.username, email: user.email } });
+    res.json({ token, user: { id: user.id, username: user.username, email: user.email, points: user.points } });
   } catch (err) {
     console.error('Error en login:', err);
     res.status(500).json({ message: 'Error en el servidor' });
