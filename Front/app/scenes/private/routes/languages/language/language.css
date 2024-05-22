@@ -27,6 +27,8 @@ body{
 }
 
 .title{
+    position: relative;
+    top: 5%;
     padding: 2%;
     margin: 0 auto;
     text-align: center;
@@ -52,10 +54,11 @@ body{
 
 
 
-.contIconos{
+.contIcons{
     width: 100%;
     height: 80%;
     display: flex;
+    /* flex-wrap: wrap; */
     align-items: center;
     justify-content: center;
     gap: 5vh;
@@ -63,20 +66,31 @@ body{
     border-radius: 50%;
 }
 
-.contIconos img{
+.contIcons img{
     object-fit: cover;
     width: 18vw;
     height: 25vh;
 }
 
+.contIcons img.remoteControl{
+    object-fit: fill;
+    width: 100vw;
+}
 
 .iconContainer{
-    object-fit: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
     animation: miAnimacion 5s infinite linear;
+    /* border: 2px solid blanchedalmond; */
 
 }
-.iconContainer{
-    width: 20vw;
+
+.pLanguage{
+    color: antiquewhite;
+    font-size: 2em;
 }
 
 
@@ -99,34 +113,4 @@ body{
 @keyframes rotate {
     from{transform: rotate3d(1,0,0,0deg);}
     to{transform: rotate3d(1,0,0,360deg);}
-}
-
-.contPaRem{
-    position: relative;
-}
-
-.pIcon{
-    padding: 2%;
-    text-align: center;
-    width: 8vw;
-    font-size: 1.5em;
-    position: absolute;
-
-}
-
-.pHtml{
-    top:64%;
-    left: 30%;
-    color: rgb(181, 80, 80);
-}
-.pCss{
-    color: rgb(85, 141, 187);
-    top:28%;
-    left: 30%;
-}
-.pJs{
-    color: rgb(213, 224, 111);
-    top:64%;
-    left: 30%;
-    font-size: 1.2em;
 }

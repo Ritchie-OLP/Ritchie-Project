@@ -23,7 +23,7 @@ export function Modules(params){
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
-        })
+        })//Cierre fetch
         const modules = await response.json()
         console.log(modules);
 

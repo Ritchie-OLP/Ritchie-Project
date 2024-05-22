@@ -7,60 +7,62 @@ import remoteControl from "../../../../../assets/images/control-remoto.png"
 import { navigateTo } from '../../../../../Router';
 
 
-export function LanguageScenes() {
+export function LanguageScenes(params) {
 
-    const pageContent = `
-      <div class= ${styles.container} id="container" >
-        <h1 class="${styles.title} ${styles.fontTitles}">WELCOME TO FRONT-END LANGUAGES</h1>
+    const pageContent = `<div class= ${styles.container} id="container" ></div>`
+  
+    let logic = async () => {
+      const arrayImages = [iconoHtml,iconoCss,iconoJS]
+      const resp = await fetch('http://localhost:4000/api/languages/route/1', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      })//Cierre fetch
 
+      const languages = await resp.json()
+      console.log(languages)
 
-        <div class=${styles.containerEditor}>
+      const containerPage = document.getElementById('container')
+      
+      containerPage.innerHTML = `
+      <h1 class="${styles.title} ${styles.fontTitles}">WELCOME TO FRONT-END LANGUAGES</h1>
+      <div class=${styles.containerEditor}>
           <img src=${editor} alt="background">
-        </div>
-
-        <div class=${styles.contIconos}>
-
-        <div class="${styles.icon3} ${styles.iconContainer}">
-          <img src=${iconoHtml} alt="html-icon" class=${styles.icono} id="htmlIcon">
-          <p class="${styles.pIcon} ${styles.pHtml} ${styles.fontTitles}">HTML</p>
-          <img src=${remoteControl} alt="remote"  >
-        </div>
-
-        <div class="${styles.icon2} ${styles.iconContainer}">
-          <img src=${iconoCss} alt="css-icon" class=${styles.icono} id="cssIcon">
-          <div class=${styles.contPaRem}>
-            <p class="${styles.pIcon} ${styles.pCss} ${styles.fontTitles}">CSS</p>
-            <img src=${remoteControl} alt="remote" >
-          </div>
-        </div>
-
-        <div class="${styles.icon1} ${styles.iconContainer}">
-          <img src=${iconoJS} alt="js-icon" class=${styles.icono} id="jsIcon">
-          <p class="${styles.pIcon} ${styles.pJs} ${styles.fontTitles}">JAVASCRIPT</p>
-          <img src=${remoteControl} alt="remote" >
-        </div>
-
-       
-
-       
-
       </div>
-      `;
-  
-    const logic = () => {
 
-  
-      const javaScript = document.getElementById('jsIcon')
-      javaScript.addEventListener('click', () => {
-        navigateTo('/dashboard/routes/languages/module')
-      })//Cierre evento javascript
+      <div class=${styles.contIcons}>
+        ${languages.map((language,idx) => {
+          return `
+            <div class=${styles.iconContainer}>
+              <img src=${arrayImages[idx]} alt="languageIcon" class=${styles.icono} id=${"img" + language.name}>
+              <p class=${styles.pLanguage}>${language.name}</p>
+              
+              <img src=${remoteControl} class=${styles.remoteControl} alt="remote">
+            </div>
+          
+          
+          `
+        }).join('')}
+      </div>
+      
+      `
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+
+      languages.forEach(language => {
+
+        let imgElement = document.getElementById("img" + language.name )
 
 
-   
+      })
 
+
+    })  
 
     }//Cierre de la logica
-  
+
  
     return {
       pageContent,
@@ -69,6 +71,9 @@ export function LanguageScenes() {
 
 
   }//Cierre de la funcion LanguageScenes
+
+
+
 
 
 
