@@ -51,12 +51,20 @@ export function LanguageScenes(params) {
 
     document.addEventListener('DOMContentLoaded', (event) => {
 
-      languages.forEach(language => {
+        let imgElement = document.querySelectorAll(".icono")
 
-        let imgElement = document.getElementById("img" + language.name )
+        if(imgElement){
+
+          imgElement.addEventListener('click', (e) => {
+
+              imagen
+
+          })
+
+        }
 
 
-      })
+  
 
 
     })  
