@@ -10,7 +10,7 @@ import icon6 from '../../../../../assets/iconos/icon6.svg'
 import icon7 from '../../../../../assets/iconos/icon7.svg'
 import icon8 from '../../../../../assets/iconos/icon8.svg'
 
-export function Modules(){
+export function Modules(params){
     const pageContent = `
     <div class=${styles.newPage} id="container"></div>
     `;
@@ -81,7 +81,7 @@ export function Modules(){
 
 
     }//Cierre de la logica
-
+    
     return {
         pageContent,
         logic
