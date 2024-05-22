@@ -75,6 +75,17 @@ body {
     color: gray;
 }
 
+.reto {
+    margin-bottom: 20px; /* Espacio entre cada reto */
+}
+
+.reto span,
+.reto p {
+    display: block; /* Mostrar cada elemento en una línea separada */
+    margin-bottom: 5px; /* Espacio entre cada elemento */
+}
+
+
 /* Filtros */
 .filtros h3 {
     margin-top: 0;

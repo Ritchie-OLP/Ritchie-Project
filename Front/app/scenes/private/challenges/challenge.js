@@ -9,44 +9,16 @@ export function ChallengeScene() {
         </div>
     </div>
     <div class="${styles.content}">
-        <div class="${styles.retos}">
+        <div class="${styles.retos}" id="challengesContainer">
             <h2>Retos</h2>
-            <div class="${styles.reto}">
-                <span>Nombre reto</span>
-                <span class="${styles.completado}">Completado</span>
-                <span>(Dificultad)</span>
-            </div>
-            <div class="${styles.reto}">
-                <span>Nombre reto</span>
-                <span class="${styles.completado}">Completado</span>
-                <span>(Dificultad)</span>
-            </div>
-            <div class="${styles.reto}">
-                <span>Nombre reto</span>
-                <span class="${styles['no-completado']}">No completado</span>
-                <span>(Dificultad)</span>
-            </div>
-            <!-- Añadir más retos según sea necesario -->
         </div>
         <div class="${styles.filtros}">
             <h2>Filtros</h2>
             <div>
                 <h3>Tipos de datos</h3>
-                <label><input type="checkbox"> Number</label>
-                <label><input type="checkbox"> Strings</label>
-                <label><input type="checkbox"> Boolean</label>
-            </div>
-            <div>
-                <h3>Métodos</h3>
-                <label><input type="checkbox"> Objetos</label>
-                <label><input type="checkbox"> Strings</label>
-                <label><input type="checkbox"> Array</label>
-            </div>
-            <div>
-                <h3>Dificultad</h3>
-                <label><input type="checkbox"> Fácil</label>
-                <label><input type="checkbox"> Medio</label>
-                <label><input type="checkbox"> Difícil</label>
+                <label><input type="checkbox" value="HTML"> HTML</label>
+                <label><input type="checkbox" value="CSS"> CSS</label>
+                <label><input type="checkbox" value="JavaScript"> JavaScript</label>
             </div>
         </div>
     </div>
@@ -76,39 +48,91 @@ export function ChallengeScene() {
         </div>
     </div>
     <div class="${styles.loader}" id="loader"></div>
-    `
+    `;
 
-    let logic = () => {
-        // Obtener el modal
-        const modal = document.getElementById("myModal")
-
-        // Botón para cerrar el modal
-        const span = modal.querySelector(`.${styles.close}`)
-
-        // Botón para abrir el modal
-        const btn = document.getElementById("proponerRetoBtn")
-
-        // Abrir el modal
+    let logic = async () => {
+        const modal = document.getElementById("myModal");
+        const span = modal.querySelector(`.${styles.close}`);
+        const btn = document.getElementById("proponerRetoBtn");
+        const challengesContainer = document.getElementById("challengesContainer");
+    
+        // Lógica para abrir y cerrar el modal
         btn.onclick = function (event) {
-            event.preventDefault()
-            modal.style.display = "block"
+            event.preventDefault();
+            modal.style.display = "block";
         };
-
-        // Cerrar el modal
+    
         span.onclick = function () {
             modal.style.display = "none";
         };
-
-        // Cerrar el modal cuando se hace clic fuera del contenido del modal
+    
         window.onclick = function (event) {
             if (event.target === modal) {
-                modal.style.display = "none"
+                modal.style.display = "none";
             }
-        }
-    }
+        };
+    
+        // Lógica para llamar al API y mostrar los desafíos
+        const response = await fetch('http://localhost:3000/retos');
+        const challenges = await response.json();
+    
+        challenges.forEach(challenge => {
+            const { "Nombre reto": nombreReto, Reto: reto, "estado del reto": estado, "tipo de reto": tipo } = challenge;
+            const challengeElement = document.createElement('div');
+            challengeElement.classList.add(styles.reto);
+        
+            challengeElement.innerHTML = `
+                <span>Nombre reto: ${nombreReto}</span>
+                <span>Estado: ${estado ? `<span class="${styles.completado}">Completado</span>` : '<span>No completado</span>'}</span>
+                <span>Tipo de reto: ${tipo}</span>
+                <p>Reto: ${reto}</p>
+            `;
+            challengesContainer.appendChild(challengeElement);
+        });      
 
+        const checkboxHTML = document.querySelector('input[value="HTML"]');
+        const checkboxJavaScript = document.querySelector('input[value="JavaScript"]');
+        const checkboxCSS = document.querySelector('input[value="CSS"]');
+
+        const filterChallenges = () => {
+            const checkboxes = {
+                HTML: checkboxHTML.checked,
+                CSS: checkboxCSS.checked, 
+                JavaScript: checkboxJavaScript.checked
+            }
+
+            challengesContainer.innerHTML = ''
+
+            challenges.forEach(challenges => {
+                const {"Nombre reto": nombreReto, Reto: reto, "estado del reto": estado, "tipo de reto": tipo } = challenges
+
+                if ((checkboxes.HTML && tipo === 'html') ||
+                (checkboxes.CSS && tipo === 'css') ||
+                (checkboxes.JavaScript && tipo === 'js')) {
+                    const challengeElement = document.createElement('div')
+                    challengeElement.classList.add(styles.reto)
+
+                    challengeElement.innerHTML = `
+                    <span>Nombre reto: ${nombreReto}</span>
+                    <span>Estado: ${estado ? `<span class="${styles.completado}">Completado</span>` : '<span>No completado</span>'}</span>
+                    <span>Tipo de reto: ${tipo}</span>
+                    <p>Reto: ${reto}</p>
+                `;
+                challengesContainer.appendChild(challengeElement);
+                }
+            })
+        }
+
+        checkboxHTML.addEventListener('change', filterChallenges);
+    checkboxCSS.addEventListener('change', filterChallenges);
+    checkboxJavaScript.addEventListener('change', filterChallenges);
+
+    filterChallenges();
+
+    }
+    
     return {
         pageContent,
         logic
-    }
+    };
 }
