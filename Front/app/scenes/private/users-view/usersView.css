@@ -1,0 +1,127 @@
+:root {
+    --inner-radius: 16px;
+    --padding: 15px;
+    --outer-radius: calc(var(--inner-radius) + var(--padding));
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    height: 83%;
+    width: 100%;
+    background-color: #160528;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    height: 90%;
+    width: 90%;
+    margin: auto;
+    background-color: #381b77;
+    padding: 10px;
+    border-radius: var(--inner-radius);
+}
+
+.left-colum {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto 0 auto;
+    width: 30%;
+    height: 80%;
+    background-color: #7748cd;
+    color: white;
+    border-radius: var(--inner-radius);
+}
+
+.left-colum-picture{
+    width: 100%;
+    height: 80%;
+    overflow: hidden;
+    border-radius: var(--inner-radius);
+    transition: 0.2s;
+}
+
+.left-colum-picture:hover{
+    transform: scale(1.05);
+}
+
+.left-colum-info{
+    width: 100%;
+    height: 20%;
+    color: white;
+    padding: 10px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.center-colum {
+    width: 30%;
+    height: 50%;
+    background-color: #7748cd;
+    color: white;
+    margin: auto 0;
+    text-align: center;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    border-radius: var(--inner-radius);
+}
+
+.right-colum {
+    width: 30%;
+    height: 80%;
+    margin: auto 0;
+    background-color: #dd7d5b;
+    border-radius: var(--inner-radius);
+}
+
+.right-colum-icon {
+    padding: 15px;
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+    background-color: #381b77;
+    margin: auto;
+    margin-top: 10px;
+    transition: 0.2s;
+}
+
+.right-colum-icon:hover {
+    scale: 1.1;
+}
+
+.info-points{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    padding: 15px;
+    width: 100%;
+    height: 50%;
+    color: white;
+}
+
+.left-colum-info, .info-points {
+    text-align: center;
+}
+
+.left-colum-info h2, .info-points h2 {
+    margin-bottom: 10px;
+}
+
+.left-colum-info h3 {
+    margin-bottom: 20px;
+}
