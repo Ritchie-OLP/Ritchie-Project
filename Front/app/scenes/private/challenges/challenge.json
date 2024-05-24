@@ -1,0 +1,85 @@
+{
+    "retos": [
+      {
+        "nombre": "Ana Pérez",
+        "correo": "ana.perez@example.com",
+        "Nombre reto": "Estructura HTML",
+        "Reto": "Crear una página web básica con la estructura HTML adecuada",
+        "estado del reto": true,
+        "tipo de reto": "html"
+      },
+      {
+        "nombre": "Juan García",
+        "correo": "juan.garcia@example.com",
+        "Nombre reto": "Diseño con Flexbox",
+        "Reto": "Usar Flexbox para diseñar una página con un layout adaptable",
+        "estado del reto": false,
+        "tipo de reto": "css"
+      },
+      {
+        "nombre": "María López",
+        "correo": "maria.lopez@example.com",
+        "Nombre reto": "Manipulación del DOM",
+        "Reto": "Crear un contador que incremente y decremente al hacer clic en botones",
+        "estado del reto": true,
+        "tipo de reto": "js"
+      },
+      {
+        "nombre": "Carlos Sánchez",
+        "correo": "carlos.sanchez@example.com",
+        "Nombre reto": "Grid Layout",
+        "Reto": "Diseñar una galería de imágenes utilizando CSS Grid",
+        "estado del reto": false,
+        "tipo de reto": "css"
+      },
+      {
+        "nombre": "Laura Gómez",
+        "correo": "laura.gomez@example.com",
+        "Nombre reto": "Etiquetas Semánticas",
+        "Reto": "Rediseñar una página usando etiquetas HTML semánticas",
+        "estado del reto": true,
+        "tipo de reto": "html"
+      },
+      {
+        "nombre": "Miguel Torres",
+        "correo": "miguel.torres@example.com",
+        "Nombre reto": "Manejo de Eventos",
+        "Reto": "Crear una lista de tareas donde se puedan agregar y eliminar tareas",
+        "estado del reto": false,
+        "tipo de reto": "js"
+      },
+      {
+        "nombre": "Lucía Martínez",
+        "correo": "lucia.martinez@example.com",
+        "Nombre reto": "Transiciones y Animaciones",
+        "Reto": "Crear una animación para una barra de navegación",
+        "estado del reto": true,
+        "tipo de reto": "css"
+      },
+      {
+        "nombre": "Pedro Fernández",
+        "correo": "pedro.fernandez@example.com",
+        "Nombre reto": "Formularios y Validación",
+        "Reto": "Crear un formulario con validación de campos",
+        "estado del reto": false,
+        "tipo de reto": "html"
+      },
+      {
+        "nombre": "Sara Ruiz",
+        "correo": "sara.ruiz@example.com",
+        "Nombre reto": "Peticiones con Fetch",
+        "Reto": "Hacer una petición a una API y mostrar los datos en la página",
+        "estado del reto": true,
+        "tipo de reto": "js"
+      },
+      {
+        "nombre": "David Morales",
+        "correo": "david.morales@example.com",
+        "Nombre reto": "Diseño Responsive",
+        "Reto": "Crear una página web que se adapte a diferentes tamaños de pantalla",
+        "estado del reto": false,
+        "tipo de reto": "css"
+      }
+    ]
+  }
+  
