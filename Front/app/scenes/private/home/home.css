@@ -30,7 +30,7 @@
     font-size: 17px;
 }
 
-.home_users_container {
+.home_routes_container {
     width: 100%;
     margin: 20px auto;
     display: flex;
@@ -39,7 +39,7 @@
     align-items: center;
 }
 
-.home_user_card {
+.home_route_card {
     position: relative;
     text-decoration: none;
     color: white;
@@ -56,7 +56,7 @@
     transition: .4s all;
 }
 
-.home_user_card > div {
+.home_route_card > div {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -68,52 +68,52 @@
     transition: .4s all;
 }
 
-.home_user_card:hover > div {
+.home_route_card:hover > div {
     backdrop-filter: blur(10px);
 }
 
-.home_user_card > figure {
+.home_route_card > figure {
     position: absolute;
     z-index: -1;
     width: 100%;
     height: 100%;
 }
 
-.home_user_card > figure > img {
+.home_route_card > figure > img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.home_user_card:hover {
+.home_route_card:hover {
     text-decoration: none;
     box-shadow: 0px 6px 8px 3px rgba(58, 58, 58, 0.75);
 }
 
-.home_user_card>div>h2 {
+.home_route_card>div>h2 {
     position: relative;
     top: 30%;
     font-size: 40px;
     transition: .2s all;
 }
 
-.home_user_card:hover>div>h2 {
+.home_route_card:hover>div>h2 {
     top: 0%;
     color: #a60eec;
 }
 
-.home_user_card>div>p {
+.home_route_card>div>p {
     color: transparent;
     text-shadow: none;
     transition: .4s all;
 }
 
-.home_user_card:hover>div>p {
+.home_route_card:hover>div>p {
     color: white;
     text-shadow: 0px 0px 2px #000000, 0px 0px 2px #000000, 0px 0px 2px #000000, 0px 0px 2px #000000, 0px 0px 2px #000000;
 }
 
-.home_user_card>div>a {
+.home_route_card>div>a {
     text-align: center;
     padding: 10px 20px;
     text-decoration: none;
@@ -127,15 +127,15 @@
     box-shadow: inset 0 0 0 0 #04B593;
 }
 
-.home_user_card:hover>div>a {
+.home_route_card:hover>div>a {
     opacity: 1;
 }
 
-.home_user_card>div>a:hover {
+.home_route_card>div>a:hover {
     box-shadow: inset 0 -10.68vh 0 0 #a60eec;
 }
 
-.home_user_card>div>a:active {
+.home_route_card>div>a:active {
     transform: scale(0.95);
     transition: .1s;
 }

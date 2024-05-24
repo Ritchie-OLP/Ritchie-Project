@@ -1,19 +1,17 @@
 import styles from './language.css';
 import editor from "../../../../../assets/images/editor-codigo.png"
-import iconoJS from "../../../../../assets/images/icono-js.png"
-import iconoCss from "../../../../../assets/images/icono-css.png"
-import iconoHtml from "../../../../../assets/images/icono-html.png"
 import remoteControl from "../../../../../assets/images/control-remoto.png"
 import { navigateTo } from '../../../../../Router';
 
 
 export function LanguageScenes(params) {
 
+    const routeId = params.get('id')
+
     const pageContent = `<div class= ${styles.container} id="container" ></div>`
   
     let logic = async () => {
-      const arrayImages = [iconoHtml,iconoCss,iconoJS]
-      const resp = await fetch('http://localhost:4000/api/languages/route/1', {
+      const resp = await fetch(`http://localhost:4000/api/languages/route/${routeId}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -22,7 +20,7 @@ export function LanguageScenes(params) {
       })//Cierre fetch
 
       const languages = await resp.json()
-      console.log(languages)
+      console.log(languages, " POR ACA")
 
       const containerPage = document.getElementById('container')
       
@@ -36,7 +34,7 @@ export function LanguageScenes(params) {
         ${languages.map((language,idx) => {
           return `
             <div class=${styles.iconContainer}>
-              <img src=${arrayImages[idx]} alt="languageIcon" class=${styles.icono} id=${"img" + language.name}>
+              <img src=${language.image} alt="languageIcon" class=${styles.icono} id=${language.id}>
               <p class=${styles.pLanguage}>${language.name}</p>
               
               <img src=${remoteControl} class=${styles.remoteControl} alt="remote">
@@ -44,30 +42,17 @@ export function LanguageScenes(params) {
           
           
           `
-        }).join('')}
+        })}
       </div>
       
       `
-
-    document.addEventListener('DOMContentLoaded', (event) => {
-
-        let imgElement = document.querySelectorAll(".icono")
-
-        if(imgElement){
-
-          imgElement.addEventListener('click', (e) => {
-
-              imagen
-
-          })
-
-        }
-
-
-  
-
-
-    })  
+        document.querySelectorAll(`.${styles.icono}`).forEach(
+          image => {
+            image.addEventListener('click', (e) => {
+              navigateTo(`/dashboard/routes/languages/module?id=${e.target.id}`)
+            })
+          }
+        )
 
     }//Cierre de la logica
 
