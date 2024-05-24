@@ -7,6 +7,8 @@ import { ForumScene } from '../scenes/private/forum';
 import { Showcases } from '../scenes/private/showcases';
 import { RegisterPage } from '../scenes/public/register';
 import { ChallengeScene } from '../scenes/private/challenges/challenge';
+import { LanguageScenes } from '../scenes/private/routes/languages/language';
+import {Modules} from '../scenes/private/routes/languages/modules';
 
 export const routes = {
     private: [
@@ -17,7 +19,8 @@ export const routes = {
         { path: '/dashboard/forum', component: ForumScene},
         { path: '/dashboard/show-cases', component: Showcases },
         { path: '/dashboard/challenges', component: ChallengeScene },
-
+        { path: '/dashboard/routes/languages', component: LanguageScenes },
+        { path: '/dashboard/routes/languages/module', component: Modules },
     ],
     public: [
         { path: '/login', component: LoginPage },

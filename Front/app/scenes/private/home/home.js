@@ -1,5 +1,8 @@
 import styles from './home.css';
 import { ReportScene } from '../reports'
+import testbg from '../../../assets/testbg.gif'
+import testbg2 from '../../../assets/testbg2.gif'
+import { navigateTo } from '../../../Router';
 
 export function HomeScene() {
 
@@ -11,63 +14,50 @@ export function HomeScene() {
   `;
 
   const pageContent = `
-  <div class="${styles.hidden}" id="home_container">
-    <h2>Home</h2>
-    <p>Welcome to the home view.</p>
-    <div id="user-info"></div>
+  <div class="${styles.home_elements} ${styles.hidden}" id="home_container">
+    <h1>RIWI Learning Platform</h1>
+    <p>Welcome to RIWI's Learning Platform, where you'll be able to step up your programming skills.</p>
+    <div id="route-info"></div>
+    <div id="all-routes" class="${styles.home_routes_container}"></div>
     ${footer}
   </div>
   <div class="${styles.loader}" id="loader">
   </div>
   `;
 
-  const logic = () => {
-    fetch(`https://jsonplaceholder.typicode.com/users/${randomNumber}`)
-      .then(response => response.json())
-      // .then(json => {
-      //   // Primero, obtenemos el elemento en dodne deseamos insetar el usuario
-      //   const userInfo = document.getElementById('user-info');
-      //   // Luego, creamos dos elementos de tipo p
-      //   const pId = document.createElement('p');
-      //   const pName = document.createElement('p');
-      //   // Luego, mostramos el ID
-      //   pId.innerText = `User: ${json.id}`;
-      //   // Luego, mostramos el nombre
-      //   pName.innerText = `Name: ${json.name}`;
-      //   // Acto seguido insertamos los elementos en el div
-      //   userInfo.appendChild(pId);
-      //   userInfo.appendChild(pName);
-      //   // Finalmente, mostramos el div
-      //   document.getElementById('home_container').classList.remove(styles.hidden);
-      // })
-      .then(({
-        id, name, username, email, address: {
-          street, suite, city, zipcode, geo: {
-            lat, lng
-          }
-        },
-        phone, website, company: {
-          name: companyName, catchPhrase, bs
-        }
-      }) => {
-        const userInfo = document.getElementById('user-info');
-        userInfo.innerHTML = `
-        <p>User: ${id}</p>
-        <p>Name: ${name}</p>
-        <p>Username: ${username}</p>
-        <p>Email: ${email}</p>
-        <p>Address: ${street}, ${suite}, ${city}, ${zipcode}</p>
-        <p>Geo: ${lat}, ${lng}</p>
-        <p>Phone: ${phone}</p>
-        <p>Website: ${website}</p>
-        <p>Company: ${companyName}</p>
-        <p>Catch Phrase: ${catchPhrase}</p>
-        <p>BS: ${bs}</p>
-        `;
-        // Finalmente, ocultamos el loader y mostramos el div
-        document.querySelector(`#loader`).classList.add(styles.hidden);
-        document.getElementById('home_container').classList.remove(styles.hidden);
+  const logic = async () => {
+    const data = await fetch('http://localhost:4000/api/routes/getallroutes', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+    const response = await data.json();
+    const routeInfo = document.getElementById('all-routes');
+    response.forEach((route, i) => {
+      
+      routeInfo.innerHTML += `
+        <article class="${styles.home_route_card}">
+          <div>
+            <h2>Route: ${route.name}</h2>
+            <p>${route.description}</p>
+            <a id="${route.id}" class=${styles.butSeeMore}>See more</a>
+          </div>
+          <figure>
+            <img src="${route.image}" alt="testbg">
+          </figure>
+        </article>
+    `;})
+    document.querySelector(`#loader`).classList.add(styles.hidden);
+    document.getElementById('home_container').classList.remove(styles.hidden);
+
+    document.querySelectorAll(`.${styles.butSeeMore}`).forEach(btn => {
+      btn.addEventListener('click' , (e) => {
+        navigateTo(`/dashboard/routes/languages?id=${e.target.id}`)
       })
+    })
+
   };
 
   return {
