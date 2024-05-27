@@ -90,3 +90,110 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 });
+
+
+
+// arrastrar y pegar
+
+
+   //     // Load saved positions
+    //     modules.forEach((module, idx) => {
+    //         const icon = document.getElementById(`${module.id}`);
+    //         const savedPosition = localStorage.getItem(`iconPosition${idx}`);
+    //         if (savedPosition) {
+    //             const { left, top } = JSON.parse(savedPosition);
+    //             icon.style.position = 'absolute';
+    //             icon.style.left = left;
+    //             icon.style.top = top;
+    //         } else {
+    //             // Ensure icons have no positioning initially
+    //             icon.style.position = '';
+    //             icon.style.left = '';
+    //             icon.style.top = '';
+    //         }
+    //     });
+
+    //     setTimeout(() => {
+    //         const icons = document.querySelectorAll(`.${styles.iconMod}`);
+    //         icons.forEach((icon, idx) => {
+    //             icon.addEventListener('dragstart', (event) => {
+    //                 event.dataTransfer.setData('text/plain', icon.id);
+    //             });
+
+    //             icon.addEventListener('dragend', (event) => {
+    //                 const rect = icon.getBoundingClientRect();
+    //                 const iconPosition = {
+    //                     left: `${rect.left}px`,
+    //                     top: `${rect.top}px`
+    //                 };
+    //                 localStorage.setItem(`iconPosition${idx}`, JSON.stringify(iconPosition));
+    //             });
+    //         });
+
+    //         const releaseArea = document.getElementById('releaseArea');
+    //         if (releaseArea) {
+    //             releaseArea.addEventListener('drop', (event) => {
+    //                 event.preventDefault();
+    //                 const iconId = event.dataTransfer.getData('text/plain');
+    //                 const draggedIcon = document.getElementById(iconId);
+
+    //                 if (draggedIcon) {
+    //                     const rect = releaseArea.getBoundingClientRect();
+    //                     const x = event.clientX - rect.left;
+    //                     const y = event.clientY - rect.top;
+
+    //                     draggedIcon.style.position = 'absolute';
+    //                     draggedIcon.style.left = `${x}px`;
+    //                     draggedIcon.style.top = `${y}px`;
+
+    //                     // Save position to localStorage
+    //                     const iconIdx = iconId.replace('icon', '');
+    //                     const iconPosition = {
+    //                         left: `${x}px`,
+    //                         top: `${y}px`
+    //                     };
+    //                     localStorage.setItem(`iconPosition${iconIdx}`, JSON.stringify(iconPosition));
+    //                 }
+    //             });
+
+    //             releaseArea.addEventListener('dragover', (event) => {
+    //                 event.preventDefault();
+    //             });
+    //         }
+
+    //         // Reset button logic
+    //         const resetButton = document.getElementById('resetButton');
+    //         if (resetButton) {
+    //             resetButton.addEventListener('click', () => {
+    //                 // Remove all icon positions from localStorage
+    //                 modules.forEach((module, idx) => {
+    //                     localStorage.removeItem(`iconPosition${idx}`);
+    //                 });
+
+    //                 // Reset positions and styles
+    //                 icons.forEach(icon => {
+    //                     icon.style.position = '';
+    //                     icon.style.left = '';
+    //                     icon.style.top = '';
+    //                 });
+
+    //                 // Apply flexbox layout to center icons horizontally
+    //                 releaseArea.style.display = 'flex';
+    //                 releaseArea.style.justifyContent = 'center';
+    //                 releaseArea.style.flexWrap = 'wrap';
+    //             });
+    //         }
+    //     }, 100);
+
+
+
+
+    // margin: 10%;
+    // width: 100%;
+    // height: 100%;
+    // position: relative;
+    // display: grid;
+    // grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    // column-gap: 2vw; 
+    // row-gap: 2vh;  
+    // justify-items: center;

@@ -1,19 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10&family=Martian+Mono:wght@100..800&family=Rubik+Scribble&family=Truculenta:opsz,wght@12..72,100..900&family=Workbench&display=swap');
+
 .newPage{
     position: relative;
     width: 100%;
     height: 100%;
     transition: clip-path 1s ease-in-out;
     clip-path: circle(0% at center);
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.usernames{
-
-    color: antiquewhite;
 
 }
+
 
 .emptyDiv,.imageBackground, .imageBackground img{
     width: 100%;
@@ -23,49 +18,83 @@
 
 .emptyDiv{
     position: absolute;
-    background-color: rgba(22, 22, 22,0.7);
+    background-color: rgba(22, 22, 22,0.5);
 
     
+}
+
+.fontTitles{
+    text-transform: uppercase;
+    font-family: "Workbench", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+      "BLED" 0,
+      "SCAN" 0;
+    color: rgb(106, 198, 196);
+
+    
+}
+
+.title{
+    text-align: center;
+    text-transform: uppercase;
+    border: 2px inset rgb(106, 198, 196);
+    border-radius: 5vw;
+    position: relative;
+    top: 5%;
+    padding: 2%;
+    margin: 0 auto;
+    text-align: center;
+    width: 70%;
 }
 
 .imageBackground{
     z-index: -1;
     position: absolute;
+    top: 0%;
+    left: 0%;
 }
 
-.contModules{
-    border: 2px dashed rgb(50, 153, 151);
-    width: 70%;
-    border-radius: 50%;
-    position: relative;
-    top: 30%;
+.mainContainerIcons{
     display: flex;
+    height: 90%;
+}
+
+.contModules {
+    align-self: center;
+    height: fit-content;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 5vw;
+    width: 70%;
+ 
+   
+}
+
+.contIconLanguage{
+    align-self: end;
+    width: 30%;
+}
+
+.iconMod:hover{
+    width: 10vw;
+    height: 10vh;
 
 }
 
 .contIconModules{
     height: 15vh;
-    width: 10vw;
-    border-radius: 50%;
-    position: relative;
-   
-}
-
-.contIconModules:hover{
     width: 15vw;
+    
+
 }
-
-.iconMod{
-    width: 5vw;
-    height: 5vh;
-}
-
-
-.iconJs{
-    position: absolute;
-    top: 10%;
-    left: 22%;
-    width: 30em;
+.mainIcon{
+    width: 25vw;
     animation: rotate 5s infinite;
 
 }
@@ -76,48 +105,95 @@
 
 }
 
-
-.mod1{
-    top: 50%;
-    right: 5%;
+.iconMod {
+    width: 8vw;
+    height: 8vh;
+    border-radius: 50%;
+    animation: changeShadow 10s infinite ease-in-out, floatAround 10s infinite ease-in-out;
+    cursor: pointer;
+    /* animation-delay: 0s, 0s;  */
 }
 
-.mod2{
-    top: 20%;
-    right: 13%;
+/* .iconMod1 {
+    animation-delay: 0s, 0s;
 }
 
-.mod3{
-    top: 1%;
-    right: 10%;
+.iconMod2 {
+    animation-delay: 1s, 1s;
 }
 
-.mod4{
-    bottom: 8%;
-    left: -2%;
+.iconMod3 {
+    animation-delay: 2s, 2s;
 }
 
-.mod5{
-    bottom: 8%;
-    left: 5%;
+.iconMod4 {
+    animation-delay: 3s, 3s;
 }
 
-.mod6{
-    top: 20%;
-    left: 28%;
-}
-
-.mod8{
-    top: 50%;
-    left: 5%;
-}
-
-
-/* .boton{
-    width: 15vw;
-    height: 15vh;
-    background-color: blue;
-    position: absolute;
-    top: 0%;
-    right: 0%;
+.iconMod5 {
+    animation-delay: 4s, 4s;
 } */
+
+
+@keyframes changeShadow {
+    0% {
+        box-shadow: 
+            10px 10px 10px 10px bisque;
+    }
+    20% {
+        box-shadow: 
+            10px 10px 10px 10px rgb(68, 125, 153);
+    }
+    40% {
+        box-shadow: 
+            10px 10px 10px 10px rgb(162, 49, 187);
+    }
+    60% {
+        box-shadow: 
+            10px 10px 10px 10px rgb(205, 220, 104);
+    }
+    80% {
+        box-shadow: 
+            10px 10px 10px 10px rgb(176, 138, 213);
+    }
+    100% {
+        box-shadow: 
+            10px 10px 10px 10px rgb(67, 18, 225);
+    }
+}
+
+@keyframes floatAround {
+    0% {
+        transform: translate(0, 0);
+    }
+    20% {
+        transform: translate(0, -30px);
+    }
+    40% {
+        transform: translate(-30px, 0);
+    }
+    60% {
+        transform: translate(0, 30px);
+    }
+    80% {
+        transform: translate(30px, 0);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+.tooltip {
+    position: absolute;
+    background-color: rgba(56, 212, 207, 0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+    z-index: 1000;
+    white-space: nowrap;
+    font-size: 2vw;
+    font-family: "Jersey 10", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}

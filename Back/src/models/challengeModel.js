@@ -29,3 +29,8 @@ exports.updateChallenge = async (id, challenge) => {
 exports.deleteChallenge = async (id) => {
     await pool.query("DELETE FROM challenges WHERE id = $1", [id]);
 }
+
+exports.getChallengesByRouteId = async (id) => {
+    const challenge = await pool.query("SELECT * FROM challenges WHERE route_id = $1", [id]);
+    return challenge.rows;
+}

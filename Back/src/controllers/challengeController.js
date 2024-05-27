@@ -1,4 +1,4 @@
-const { getAllChallenges, getChallengeById, saveChallenge, updateChallenge, deleteChallenge } = require("../models/challengeModel");
+const { getAllChallenges, getChallengeById, saveChallenge, updateChallenge, deleteChallenge, getChallengesByRouteId } = require("../models/challengeModel");
 
 exports.getAllChallenges = async (req, res) => {
     try {
@@ -63,3 +63,17 @@ exports.deleteChallenge = async (req, res) => {
         res.status(500).json({ message: 'Error en el servidor' });
     }
 }
+
+exports.getChallengesByRouteId = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const challenges = await getChallengesByRouteId(id);
+        if (!challenges) {
+            return res.status(400).json({ message: 'No challenges found' });
+        }
+        res.status(200).json(challenges);
+    } catch (error) {
+        console.error('Error en getchallengesByRouteId:', error);
+        res.status(500).json({ message: 'Error en el servidor' });
+    }
+};
