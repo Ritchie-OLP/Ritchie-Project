@@ -1,19 +1,35 @@
 import { navigateTo } from '../../../../../Router.js';
 import { formValidator } from '../../../../../helpers';
 import style from './login-form.css';
+import riwiLogo from '../../../../../assets/images/riwi-logo.png';
 
 export async function LoginFormComponent() {
   const root = document.getElementById('root');
 
   root.innerHTML = `
-      <form id="loginForm" class="${style.form}">
-        <h2>Login</h2>
-        <label for="email" class="${style.label}">Email:</label>
-        <input type="text" id="email" name="email" autocomplete="email" class="${style['input-email']}">
-        <label for="password" class="${style.label}">Password:</label>
-        <input type="password" id="password" name="password" autocomplete="current-password" class="${style['input-password']}">
+  <div class="${style.login_container}">
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <form id="loginForm" class="${style.form}">
+      <figure class="${style.login_logo}">
+        <img src="${riwiLogo}" alt="Riwi Logo">
+      </figure>
+      <div class="${style.form_container}">
+        <h2><span>S</span>ign <span>I</span>n</h2>
+        <div class="${style.form_fields}">
+          <label for="email" class="${style.label}">Email:</label>
+          <input type="text" id="email" name="email" autocomplete="email" class="${style['input-email']}">
+        </div>
+        <div class="${style.form_fields}">
+          <label for="password" class="${style.label}">Password:</label>
+          <input type="password" id="password" name="password" autocomplete="current-password" class="${style['input-password']}">
+        </div>
         <button type="submit" class="${style['button-send']}">Login</button>
-      </form>
+      </div>
+      <p class="${style.signup_link}">Don't have an account? <a href="/register">Sign up</a></p>
+    </form>
+</div>
     `;
   
   const form = document.getElementById('loginForm');
