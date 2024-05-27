@@ -1,6 +1,7 @@
 import styles from './home.css';
 import { ReportScene } from '../reports'
 import { navigateTo } from '../../../Router';
+import background from '../../../assets/images/background_modules.jpg';
 
 export function HomeScene() {
 
@@ -13,6 +14,9 @@ export function HomeScene() {
 
   const pageContent = `
   <div class="${styles.home_elements} ${styles.hidden}" id="home_container">
+    <div class=${styles.containerEditor}>
+      <img src=${background} alt="background">
+    </div>
     <h1>RIWI Learning Platform</h1>
     <p>Welcome to RIWI's Learning Platform, where you'll be able to step up your programming skills.</p>
     <div id="route-info"></div>

@@ -9,6 +9,9 @@ import { RegisterPage } from '../scenes/public/register';
 import { ChallengeScene } from '../scenes/private/challenges/challenge';
 import { LanguageScenes } from '../scenes/private/routes/languages/language';
 import { Modules } from '../scenes/private/routes/languages/modules';
+import { UserView } from '../scenes/private/users-view/usersView';
+import { ChallengeScene2 } from '../scenes/private/challenges2/challenge2';
+
 import { Userview } from '../scenes/private/users-view';
 import { ConsoleHTML } from '../scenes/private/consolehtml'
 import {ConsoleCSS } from '../scenes/private/consolecss'
@@ -25,6 +28,10 @@ export const routes = {
         { path: '/dashboard/challenges', component: ChallengeScene },
         { path: '/dashboard/routes/languages', component: LanguageScenes },
         { path: '/dashboard/routes/languages/module', component: Modules },
+        { path: '/dashboard/user-view', component: UserView },
+        { path: '/dashboard/challenges2', component: ChallengeScene2 }
+        
+        
         { path: '/dashboard/user-view', component: Userview },
         { path: '/dashboard/console-html', component:  ConsoleHTML },
         { path: '/dashboard/console-css', component: ConsoleCSS },

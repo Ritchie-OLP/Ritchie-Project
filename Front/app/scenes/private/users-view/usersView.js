@@ -5,7 +5,7 @@ import rocket from '../../../assets/rocket.gif';
 import goku from '../../../assets/goku.jpeg';
 
 
-export function Userview() {
+export function UserView() {
     const theUser = JSON.parse(localStorage.getItem('user'));
     const nameUser = theUser.username
     const pageContent = `
