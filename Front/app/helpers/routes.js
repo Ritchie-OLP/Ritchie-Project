@@ -8,7 +8,11 @@ import { Showcases } from '../scenes/private/showcases';
 import { RegisterPage } from '../scenes/public/register';
 import { ChallengeScene } from '../scenes/private/challenges/challenge';
 import { LanguageScenes } from '../scenes/private/routes/languages/language';
-import {Modules} from '../scenes/private/routes/languages/modules';
+import { Modules } from '../scenes/private/routes/languages/modules';
+import { Userview } from '../scenes/private/users-view';
+import { ConsoleHTML } from '../scenes/private/consolehtml'
+import {ConsoleCSS } from '../scenes/private/consolecss'
+import { ConsoleJS } from '../scenes/private/consolejs';
 
 export const routes = {
     private: [
@@ -21,6 +25,11 @@ export const routes = {
         { path: '/dashboard/challenges', component: ChallengeScene },
         { path: '/dashboard/routes/languages', component: LanguageScenes },
         { path: '/dashboard/routes/languages/module', component: Modules },
+        { path: '/dashboard/user-view', component: Userview },
+        { path: '/dashboard/console-html', component:  ConsoleHTML },
+        { path: '/dashboard/console-css', component: ConsoleCSS },
+        { path: 'dashboard/console-js', component: ConsoleJS }
+
     ],
     public: [
         { path: '/login', component: LoginPage },

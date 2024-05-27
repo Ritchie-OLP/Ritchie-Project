@@ -7,7 +7,7 @@ export function NavigationBar(
 
   return `
   <div class="${styles.container}">
-    <p>${user}</p>
+    <a href="/dashboard/user-view">${user}</a>
     <img src="${userImage}" alt="User image">
   </div>
   `;

@@ -3,6 +3,7 @@ import { logOut } from "../../../../helpers";
 import { NavigationBar } from "../../../navigation-bar/navigation-bar";
 import { SidebarMenu } from "../../../sidebar-menu/sidebar-menu";
 import styles from './dashboard-layout.css';
+const theUser = JSON.parse(localStorage.getItem('user'));
 
 export function DashboardLayout(pageContent, logic, footer, navbarData, sidebarData,) {
 
@@ -22,7 +23,7 @@ export function DashboardLayout(pageContent, logic, footer, navbarData, sidebarD
   ];
 
   navbarData = {
-    user: 'Nicolas Picon',
+    user: theUser.username,
     userImage: 'https://randomuser.me/api/portraits/men/75.jpg',
   };
 
