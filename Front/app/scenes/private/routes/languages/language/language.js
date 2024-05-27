@@ -38,7 +38,7 @@ export function LanguageScenes(params) {
 
       setTimeout(function () {
         containerPage.style.clipPath = 'circle(100% at center)';
-     }, 20);
+     }, 15);
 
       
       containerPage.innerHTML = `

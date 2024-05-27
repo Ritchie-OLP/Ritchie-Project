@@ -35,7 +35,7 @@ export function Modules(params) {
 
         setTimeout(function () {
             containerPage.style.clipPath = 'circle(100% at center)';
-        }, 20);
+        }, 15);
 
         containerPage.innerHTML = `
             <h1 class="${styles.title} ${styles.fontTitles}">Welcome to ${language.name} modules</h1>

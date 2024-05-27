@@ -34,7 +34,7 @@ export function ChallengeScene2(params) {
 
         setTimeout(function () {
             containerPage.style.clipPath = 'circle(100% at center)';
-        }, 30);
+        }, 15);
     };
 
     return {
