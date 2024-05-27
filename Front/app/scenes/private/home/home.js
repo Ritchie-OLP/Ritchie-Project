@@ -1,7 +1,5 @@
 import styles from './home.css';
 import { ReportScene } from '../reports'
-import testbg from '../../../assets/testbg.gif'
-import testbg2 from '../../../assets/testbg2.gif'
 import { navigateTo } from '../../../Router';
 
 export function HomeScene() {
