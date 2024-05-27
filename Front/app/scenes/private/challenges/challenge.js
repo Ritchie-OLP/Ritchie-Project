@@ -90,9 +90,9 @@ export function ChallengeScene() {
             challengesContainer.appendChild(challengeElement);
         });      
 
-        const checkboxHTML = document.querySelector('input[value="HTML"]');
-        const checkboxJavaScript = document.querySelector('input[value="JavaScript"]');
-        const checkboxCSS = document.querySelector('input[value="CSS"]');
+        const checkboxHTML = document.querySelector('input[value="HTML"]')
+        const checkboxJavaScript = document.querySelector('input[value="JavaScript"]')
+        const checkboxCSS = document.querySelector('input[value="CSS"]')
 
         const filterChallenges = () => {
             const checkboxes = {
@@ -118,21 +118,62 @@ export function ChallengeScene() {
                     <span>Tipo de reto: ${tipo}</span>
                     <p>Reto: ${reto}</p>
                 `;
-                challengesContainer.appendChild(challengeElement);
+                challengesContainer.appendChild(challengeElement)
                 }
             })
         }
 
-        checkboxHTML.addEventListener('change', filterChallenges);
-    checkboxCSS.addEventListener('change', filterChallenges);
-    checkboxJavaScript.addEventListener('change', filterChallenges);
+        checkboxHTML.addEventListener('change', filterChallenges)
+    checkboxCSS.addEventListener('change', filterChallenges)
+    checkboxJavaScript.addEventListener('change', filterChallenges)
 
-    filterChallenges();
+    filterChallenges()
+
+    submitBtn.onclick = async function (event) {
+        event.preventDefault()
+
+        const name = document.getElementById('name').value
+        const email = document.getElementById('email').value
+        const finalidad = document.getElementById('finalidad').value
+        const tipoReto = document.getElementById('tipo-reto').value
+        const reto = document.getElementById('reto').value
+        const resuelto = document.getElementById('resuelto').value
+
+        const newChallenge = {
+            "Nombre reto": name,
+            "Correo": email,
+            "Finalidad": finalidad,
+            "tipo de reto": tipoReto,
+            "Reto": reto,
+            "Reto resuelto": resuelto,
+            "estado del reto": false
+        }
+
+        try {
+            const response = await fetch('http://localhost:3000/retos', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newChallenge)
+            })
+
+            if (response.ok) {
+                alert('Reto enviado con éxito')
+                modal.style.display = "none"
+            } else {
+                alert('Error al enviar el reto')
+            }
+        } catch (error) {
+            console.error('Error al enviar el reto:', error)
+            alert('Error al enviar el reto')
+        }
+    };
 
     }
     
     return {
         pageContent,
         logic
-    };
+    }
 }
