@@ -10,3 +10,10 @@ exports.getRouteById = async (id) => {
     const { rows } = await pool.query(query, [id]);
     return rows[0];
 }
+
+exports.saveRoute = async (name, description, image) => {
+    const query = `INSERT INTO routes (name, description, image) VALUES ($1, $2, $3) RETURNING *`;
+    const values = [name, description, image];
+    const  { rows }  = await pool.query(query, values);
+    return rows[0];
+}
