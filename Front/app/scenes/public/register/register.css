@@ -1,14 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Quicksand:wght@300..700&display=swap');
 
-.login_container {
+/* .login_container {
     width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 
 .form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font-family: 'Quicksand';
     font-weight: bold;
     display: flex;
@@ -62,7 +66,7 @@
     height: 100%;
     border: 2px solid rgb(159, 108, 255);
     border-radius: 15px;
-    background-color: rgba(174, 130, 255, 0.493);
+    background-color: rgba(174, 130, 255, 0.712);
     backdrop-filter: blur(20px);
     margin: 0 auto 30px;
     padding: 30px;
@@ -80,6 +84,7 @@
 
 .form_container > h2 > span {
     color: #6B5CFF;
+    font-size: 38px;
 }
 
 .form_fields {
@@ -108,6 +113,7 @@
 }
 
 .button-send {
+    font-family: 'Quicksand';
     font-size: 17px;
     padding: 12px 25px;
     border: none;
