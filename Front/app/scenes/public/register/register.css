@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Quicksand:wght@300..700&display=swap');
 
 .login_container {
     width: 100%;
@@ -9,6 +9,8 @@
 }
 
 .form {
+    font-family: 'Quicksand';
+    font-weight: bold;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -94,6 +96,8 @@
 .input-email,
 .input-password,
 .input-username {
+    font-family: 'Quicksand';
+    font-weight: bold;
     margin-bottom: 10px;
     padding: 10px 20px;
     font-size: 15px;
