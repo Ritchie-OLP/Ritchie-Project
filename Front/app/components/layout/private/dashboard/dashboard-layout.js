@@ -3,6 +3,7 @@ import { logOut } from "../../../../helpers";
 import { NavigationBar } from "../../../navigation-bar/navigation-bar";
 import { SidebarMenu } from "../../../sidebar-menu/sidebar-menu";
 import styles from './dashboard-layout.css';
+import trophy from '../../../../assets/iconos/trophy.svg'
 
 export function DashboardLayout(pageContent, logic, footer, navbarData, sidebarData,) {
 
@@ -12,13 +13,13 @@ export function DashboardLayout(pageContent, logic, footer, navbarData, sidebarD
 
   sidebarData = [
     { href: '/dashboard', name: 'Home' },
-    { href: '/dashboard/reports', name: 'Reports' },
-    { href: '/dashboard/settings', name: 'Settings' },
+    // { href: '/dashboard/reports', name: 'Reports' },
+    // { href: '/dashboard/settings', name: 'Settings' },
     { href: '/dashboard/users', name: 'Users' },
-    { href: '/dashboard/products', name: 'Products' },
-    { href: '/dashboard/forum', name: 'Forum' },
+    // { href: '/dashboard/products', name: 'Products' },
+    // { href: '/dashboard/forum', name: 'Forum' },
     { href: '/dashboard/show-cases', name: 'Showcases' },
-    { href: '/dashboard/challenges', name: 'Challenges'},
+    { href: '/dashboard/challenges', name: 'Challenges', icon: trophy},
   ];
 
   navbarData = {

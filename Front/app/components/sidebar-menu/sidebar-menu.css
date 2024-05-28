@@ -2,9 +2,40 @@ aside.sidebar-menu {
     background-color: rgba(14, 24, 42, 0.8);
     box-shadow: 0 0 3px rgba(210, 150, 150, 0.1);
     height: 100%;
+    width: 100%;
 }
 
-aside.sidebar-menu > ul {
+.menu {
+    display: none;
+}
+
+@media screen and (max-width: 600px) {
+    .menu {
+        display: block;
+    }
+
+    .containerUl {
+        display: none;
+    }
+}
+
+/* Agrega la clase 'open' para mostrar el menú */
+aside.sidebar-menu.open {
+    left: 0;
+}
+
+/* Agrega la clase 'open' para mostrar el contenido del menú */
+.containerUl.open {
+display: block;
+}
+
+/* Añade un fondo de desenfoque al contenido principal cuando se muestra el menú */
+.main-content.blur {
+filter: blur(5px);
+}
+
+
+.containerUl > ul  {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -14,14 +45,22 @@ aside.sidebar-menu > ul {
     padding-top: 50px;
 }
 
-aside.sidebar-menu > ul > li {
+.containerUl > ul > li {
     list-style: none;
+    justify-content: center;
+    align-items: center;
+    display: flex;
     width: 100%;
     transition: var(--transition);
-   
 }
 
-aside.sidebar-menu > ul > li > button {
+.containerUl > ul > li > img {
+    width: 5vw;
+    height: 3vh;
+    margin-right: var(--spacing-1);
+}
+
+.containerUl > ul > li > button {
     color: aliceblue;
     font-size: 1.2rem;
     padding: 1rem;
@@ -33,6 +72,6 @@ aside.sidebar-menu > ul > li > button {
 }
 
 .active,
-aside.sidebar-menu > ul > li:hover {
+.containerUl > ul > li:hover {
     background-color: rgba(0, 0, 0, 0.1);
 }
