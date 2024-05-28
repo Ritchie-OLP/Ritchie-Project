@@ -32,6 +32,7 @@ body{
     
 }
 
+
 .title{
     border: 2px inset rgb(106, 198, 196);
     border-radius: 5vw;
@@ -73,9 +74,7 @@ body{
 }
 
 .contIcons img{
-    object-fit: cover;
-    width: 18vw;
-    height: 25vh;
+    width: 15vw;
 }
 
 .contIcons img.remoteControl{
