@@ -43,8 +43,6 @@ export function UserView() {
 
     `; //Aqui va el html
     const logic = () => {
-        console.log( theUser);
-        console.log(nameUser);
         //Aqui va la logica de JS
     }
     return {
