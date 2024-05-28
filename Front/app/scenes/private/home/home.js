@@ -19,6 +19,23 @@ export function HomeScene() {
     <p>Welcome to RIWI's Learning Platform, where you'll be able to step up your programming skills.</p>
     <div id="route-info"></div>
     <div id="all-routes" class="${styles.home_routes_container}"></div>
+
+    <!-- Modal para Crear Ruta -->
+    <div id="modalRuta" class="${styles.modal}">
+        <div class="${styles['modal-content']}">
+            <span class="${styles.close}">&times;</span>
+            <h2>Crear Ruta</h2>
+            <form id="crearRutaForm">
+                <label for="rutaName">Nombre de la ruta</label>
+                <input type="text" id="rutaName" name="name" placeholder="Nombre de la ruta">
+                <label for="rutaDescription">Descripción</label>
+                <textarea id="rutaDescription" name="description" placeholder="Descripción de la ruta"></textarea>
+                <label for="rutaImage">Img</label>
+                <input type="text" id="rutaImage" name="image" placeholder="URL de la imagen">
+                <button type="submit" id="submitRutaBtn">Crear Ruta</button>
+            </form>
+        </div>
+    </div>
     ${footer}
   </div>
   <div class="${styles.loader}" id="loader">
@@ -58,7 +75,65 @@ export function HomeScene() {
       })
     })
 
-  };
+    const modal = document.getElementById('modalRuta');
+    const btn = document.getElementById('crearRutaBtn');
+    const span = modal.querySelector(`.${styles.close}`);
+
+    btn.onclick = function (event) {
+        event.preventDefault();
+        modal.style.display = 'block';
+    };
+
+    span.onclick = function () {
+        modal.style.display = 'none';
+    };
+
+    window.onclick = function (event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+    // logica para manejar el envio del formulario
+    submitBtn.onclick = async function (event) {
+      event.preventDefault()
+  
+      const rutaNameInput = document.getElementById('rutaName')
+      const rutaDescriptionInput = document.getElementById('rutaDescription')
+      const rutaImageInput = document.getElementById('rutaImage')
+  
+      const name = rutaNameInput.value
+      const description = rutaDescriptionInput.value
+      const image = rutaImageInput.value
+  
+      const newRoute = {
+          name: name,
+          description: description,
+          image: image
+      }
+  
+      try {
+          const response = await fetch('http://localhost:3000/rutas', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(newRoute)
+          });
+  
+          if (response.ok) {
+              alert('Ruta creada con éxito');
+              modal.style.display = 'none';
+          } else {
+              alert('Error al crear la ruta');
+          }
+      } catch (error) {
+          console.error('Error al crear la ruta:', error);
+          alert('Error al crear la ruta');
+      }
+  }
+
+}
 
   return {
     pageContent,

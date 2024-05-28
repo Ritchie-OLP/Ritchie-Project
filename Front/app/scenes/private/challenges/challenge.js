@@ -32,19 +32,28 @@ export function ChallengeScene() {
             <label for="email">Correo</label>
             <input type="email" id="email" name="email" placeholder="johndoe@example.com">
 
-            <label for="finalidad">Finalidad del reto</label>
-            <textarea id="finalidad" name="finalidad">Con este reto se busca Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec sem in justo. Nullam in felis eu.</textarea>
+            <label for="nombreReto">Nombre del reto</label>
+            <input type="text" id="nombreReto" name="nombreReto" placeholder="Lorem ipsum dolor sit amet, con">
 
-            <label for="tipo-reto">Tipo de reto</label>
-            <input type="text" id="tipo-reto" name="tipo-reto" placeholder="CSS, HTML, JavaScript" class="full-width">
+            <label for="descripcionReto">Descripción del reto y teoría necesaria</label>
+            <textarea id="descripcionReto" name="descripcionReto" placeholder="Describa el reto y la teoría necesaria..."></textarea>
 
-            <label for="reto">Reto</label>
-            <textarea id="reto" name="reto">Aqui va la informacion del reto Ejemplo: En este reto vas a utilizar toLowercase, un metodo de strings</textarea>
+            <label for="ruta">Asignar ruta</label>
+            <select id="ruta" name="ruta">
+                <option value="" disabled selected>Lista de rutas disponibles</option>
+            </select>
 
-            <label for="resuelto">Reto resuelto</label>
-            <textarea id="resuelto" name="resuelto">Llenar este espacio con la informacion del reto resuelto</textarea>
+            <label for="lenguaje">Asignar lenguaje</label>
+            <select id="lenguaje" name="lenguaje">
+                <option value="" disabled selected>Lista de lenguajes disponibles para la ruta elegida</option>
+            </select>
 
-            <button id="submitBtn">Enviar información</button>
+            <label for="modulo">Asignar módulo</label>
+            <select id="modulo" name="modulo">
+                <option value="" disabled selected>Lista de módulos disponibles para el lenguaje elegido</option>
+            </select>
+
+            <button type="submit">Enviar información</button>
         </div>
     </div>
     <div class="${styles.loader}" id="loader"></div>
@@ -123,32 +132,32 @@ export function ChallengeScene() {
             })
         }
 
-        checkboxHTML.addEventListener('change', filterChallenges)
+    checkboxHTML.addEventListener('change', filterChallenges)
     checkboxCSS.addEventListener('change', filterChallenges)
     checkboxJavaScript.addEventListener('change', filterChallenges)
 
     filterChallenges()
 
     submitBtn.onclick = async function (event) {
-        event.preventDefault()
-
-        const name = document.getElementById('name').value
-        const email = document.getElementById('email').value
-        const finalidad = document.getElementById('finalidad').value
-        const tipoReto = document.getElementById('tipo-reto').value
-        const reto = document.getElementById('reto').value
-        const resuelto = document.getElementById('resuelto').value
-
+        event.preventDefault();
+    
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const nombreReto = document.getElementById('nombreReto').value;
+        const descripcionReto = document.getElementById('descripcionReto').value;
+        const ruta = document.getElementById('ruta').value;
+        const lenguaje = document.getElementById('lenguaje').value;
+        const modulo = document.getElementById('modulo').value;
+    
         const newChallenge = {
-            "Nombre reto": name,
-            "Correo": email,
-            "Finalidad": finalidad,
-            "tipo de reto": tipoReto,
-            "Reto": reto,
-            "Reto resuelto": resuelto,
-            "estado del reto": false
-        }
-
+            name: nombreReto,
+            user_id: localStorage.getItem('user').id,
+            content: descripcionReto,
+            route_id: ruta,
+            language_id: lenguaje,
+            module_id: modulo
+        };
+    
         try {
             const response = await fetch('http://localhost:3000/retos', {
                 method: 'POST',
@@ -157,7 +166,7 @@ export function ChallengeScene() {
                 },
                 body: JSON.stringify(newChallenge)
             })
-
+    
             if (response.ok) {
                 alert('Reto enviado con éxito')
                 modal.style.display = "none"
@@ -168,7 +177,7 @@ export function ChallengeScene() {
             console.error('Error al enviar el reto:', error)
             alert('Error al enviar el reto')
         }
-    };
+    }    
 
     }
     
