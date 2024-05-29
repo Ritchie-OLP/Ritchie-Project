@@ -41,12 +41,23 @@ div.output-container{
 
 div.output{
     height: 100%;
-    width: 100%;
-    overflow-y: auto;
-    color: #dd7d5b;
     background-color: #160528;
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #381b77;
     border-radius: 4px;
+}
+
+input{
+    color: #dd7d5b;
+    background-color: #160528;
+    border: none;
+}
+
+.output-text:focus{
+    outline: none;
+}
+
+.output-text:hover {
+    background-color: #160528;
 }
