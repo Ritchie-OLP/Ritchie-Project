@@ -5,8 +5,6 @@ import background from '../../../assets/images/background_modules.jpg';
 
 export function HomeScene() {
 
-  // generate random number between 1 an 10
-  const randomNumber = Math.floor(Math.random() * 10) + 1;
 
   const footer = `
   <footer><p>All rights reserved.</p></footer>
@@ -123,7 +121,8 @@ export function HomeScene() {
           const response = await fetch('http://localhost:4000/api/routes', {
               method: 'POST',
               headers: {
-                  'Content-Type': 'application/json'
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${localStorage.getItem('token')}`
               },
               body: JSON.stringify(newRoute)
           });
@@ -132,7 +131,8 @@ export function HomeScene() {
               alert('Ruta creada con éxito');
               modal.style.display = 'none';
           } else {
-              alert('Error al crear la ruta');
+            const errorData = await response.json();
+            alert(`Error al crear la ruta: ${errorData.message}`);
           }
       } catch (error) {
           console.error('Error al crear la ruta:', error);

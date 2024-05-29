@@ -26,16 +26,11 @@ export function ChallengeScene() {
         <div class="${styles['modal-content']}">
             <span class="${styles.close}">&times;</span>
             <h2>Propuesta reto</h2>
-            <label for="name">Nombre</label>
-            <input type="text" id="name" name="name" placeholder="John Doe">
-
-            <label for="email">Correo</label>
-            <input type="email" id="email" name="email" placeholder="johndoe@example.com">
 
             <label for="nombreReto">Nombre del reto</label>
             <input type="text" id="nombreReto" name="nombreReto" placeholder="Lorem ipsum dolor sit amet, con">
 
-            <label for="descripcionReto">Descripción del reto y teoría necesaria</label>
+            <label for="descripcionReto">Contenido del reto(Reto y teoria relacionada))</label>
             <textarea id="descripcionReto" name="descripcionReto" placeholder="Describa el reto y la teoría necesaria..."></textarea>
 
             <label for="ruta">Asignar ruta</label>
@@ -53,7 +48,7 @@ export function ChallengeScene() {
                 <option value="" disabled selected>Lista de módulos disponibles para el lenguaje elegido</option>
             </select>
 
-            <button type="submit">Enviar información</button>
+            <button type="submit" id="submitBtn">Enviar información</button>
         </div>
     </div>
     <div class="${styles.loader}" id="loader"></div>
@@ -64,6 +59,8 @@ export function ChallengeScene() {
         const span = modal.querySelector(`.${styles.close}`);
         const btn = document.getElementById("proponerRetoBtn");
         const challengesContainer = document.getElementById("challengesContainer");
+        const submitBtn = document.getElementById('submitBtn')
+        const user_id = JSON.parse(localStorage.getItem('user')).username
     
         // Lógica para abrir y cerrar el modal
         btn.onclick = function (event) {
@@ -82,87 +79,87 @@ export function ChallengeScene() {
         };
     
         // Lógica para llamar al API y mostrar los desafíos
-        const response = await fetch('http://localhost:3000/retos');
-        const challenges = await response.json();
+        // const response = await fetch('http://localhost:4000/api/challenges/getallchallenges');
+        // const challenges = await response.json();
     
-        challenges.forEach(challenge => {
-            const { "Nombre reto": nombreReto, Reto: reto, "estado del reto": estado, "tipo de reto": tipo } = challenge;
-            const challengeElement = document.createElement('div');
-            challengeElement.classList.add(styles.reto);
+        // challenges.forEach(challenge => {
+        //     const { "Nombre reto": nombreReto, Reto: reto, "estado del reto": estado, "tipo de reto": tipo } = challenge;
+        //     const challengeElement = document.createElement('div');
+        //     challengeElement.classList.add(styles.reto);
         
-            challengeElement.innerHTML = `
-                <span>Nombre reto: ${nombreReto}</span>
-                <span>Estado: ${estado ? `<span class="${styles.completado}">Completado</span>` : '<span>No completado</span>'}</span>
-                <span>Tipo de reto: ${tipo}</span>
-                <p>Reto: ${reto}</p>
-            `;
-            challengesContainer.appendChild(challengeElement);
-        });      
+        //     challengeElement.innerHTML = `
+        //         <span>Nombre reto: ${nombreReto}</span>
+        //         <span>Estado: ${estado ? `<span class="${styles.completado}">Completado</span>` : '<span>No completado</span>'}</span>
+        //         <span>Tipo de reto: ${tipo}</span>
+        //         <p>Reto: ${reto}</p>
+        //     `;
+        //     challengesContainer.appendChild(challengeElement);
+        // });      
 
-        const checkboxHTML = document.querySelector('input[value="HTML"]')
-        const checkboxJavaScript = document.querySelector('input[value="JavaScript"]')
-        const checkboxCSS = document.querySelector('input[value="CSS"]')
+        // const checkboxHTML = document.querySelector('input[value="HTML"]')
+        // const checkboxJavaScript = document.querySelector('input[value="JavaScript"]')
+        // const checkboxCSS = document.querySelector('input[value="CSS"]')
 
-        const filterChallenges = () => {
-            const checkboxes = {
-                HTML: checkboxHTML.checked,
-                CSS: checkboxCSS.checked, 
-                JavaScript: checkboxJavaScript.checked
-            }
+        // const filterChallenges = () => {
+        //     const checkboxes = {
+        //         HTML: checkboxHTML.checked,
+        //         CSS: checkboxCSS.checked, 
+        //         JavaScript: checkboxJavaScript.checked
+        //     }
 
-            challengesContainer.innerHTML = ''
+        //     challengesContainer.innerHTML = ''
 
-            challenges.forEach(challenges => {
-                const {"Nombre reto": nombreReto, Reto: reto, "estado del reto": estado, "tipo de reto": tipo } = challenges
+        //     challenges.forEach(challenges => {
+        //         const {"Nombre reto": nombreReto, Reto: reto, "estado del reto": estado, "tipo de reto": tipo } = challenges
 
-                if ((checkboxes.HTML && tipo === 'html') ||
-                (checkboxes.CSS && tipo === 'css') ||
-                (checkboxes.JavaScript && tipo === 'js')) {
-                    const challengeElement = document.createElement('div')
-                    challengeElement.classList.add(styles.reto)
+        //         if ((checkboxes.HTML && tipo === 'html') ||
+        //         (checkboxes.CSS && tipo === 'css') ||
+        //         (checkboxes.JavaScript && tipo === 'js')) {
+        //             const challengeElement = document.createElement('div')
+        //             challengeElement.classList.add(styles.reto)
 
-                    challengeElement.innerHTML = `
-                    <span>Nombre reto: ${nombreReto}</span>
-                    <span>Estado: ${estado ? `<span class="${styles.completado}">Completado</span>` : '<span>No completado</span>'}</span>
-                    <span>Tipo de reto: ${tipo}</span>
-                    <p>Reto: ${reto}</p>
-                `;
-                challengesContainer.appendChild(challengeElement)
-                }
-            })
-        }
+        //             challengeElement.innerHTML = `
+        //             <span>Nombre reto: ${nombreReto}</span>
+        //             <span>Estado: ${estado ? `<span class="${styles.completado}">Completado</span>` : '<span>No completado</span>'}</span>
+        //             <span>Tipo de reto: ${tipo}</span>
+        //             <p>Reto: ${reto}</p>
+        //         `;
+        //         challengesContainer.appendChild(challengeElement)
+        //         }
+        //     })
+        // }
 
-    checkboxHTML.addEventListener('change', filterChallenges)
-    checkboxCSS.addEventListener('change', filterChallenges)
-    checkboxJavaScript.addEventListener('change', filterChallenges)
+    // checkboxHTML.addEventListener('change', filterChallenges)
+    // checkboxCSS.addEventListener('change', filterChallenges)
+    // checkboxJavaScript.addEventListener('change', filterChallenges)
 
-    filterChallenges()
+    // filterChallenges()
 
     submitBtn.onclick = async function (event) {
         event.preventDefault();
     
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const nombreReto = document.getElementById('nombreReto').value;
-        const descripcionReto = document.getElementById('descripcionReto').value;
-        const ruta = document.getElementById('ruta').value;
-        const lenguaje = document.getElementById('lenguaje').value;
-        const modulo = document.getElementById('modulo').value;
+        const nameChallenge = document.getElementById('nombreReto').value;
+        const contentChallenge = document.getElementById('descripcionReto').value;
+        const route = document.getElementById('ruta').value;
+        const language = document.getElementById('lenguaje').value;
+        const module = document.getElementById('modulo').value;
+        console.log(`name:${nameChallenge} Content: ${contentChallenge} route: ${route} language: ${language} module: ${module} userId: ${user_id}`)
     
         const newChallenge = {
-            name: nombreReto,
-            user_id: localStorage.getItem('user').id,
-            content: descripcionReto,
-            route_id: ruta,
-            language_id: lenguaje,
-            module_id: modulo
+            name: nameChallenge,
+            userId: user_id,
+            content: contentChallenge,
+            routeId: route ? route : null,
+            languageId: language ? language : null,
+            moduleId: module ? module : null
         };
     
         try {
-            const response = await fetch('http://localhost:3000/retos', {
+            const response = await fetch('http://localhost:4000/api/challenges', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
                 },
                 body: JSON.stringify(newChallenge)
             })
@@ -171,7 +168,8 @@ export function ChallengeScene() {
                 alert('Reto enviado con éxito')
                 modal.style.display = "none"
             } else {
-                alert('Error al enviar el reto')
+                const errorData = await response.json();
+                alert(`Error al crear el reto: ${errorData.message}`);
             }
         } catch (error) {
             console.error('Error al enviar el reto:', error)
