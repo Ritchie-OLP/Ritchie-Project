@@ -27,72 +27,71 @@ export function Home2Scene(){
             </form>
         </div>
     </div>
-
     
     `
    
-    const logic = async () => {
-        // Obtener el ID de la ruta desde el path de la URL
-        const routeId = window.location.search.split('=')[1];
+//     const logic = async () => {
+//         // Obtener el ID de la ruta desde el path de la URL
+//         const routeId = window.location.search.split('=')[1];
     
-        const modalLenguaje = document.getElementById('modalLenguaje')
-        const btnCrearLenguaje = document.getElementById('crearLenguajeBtn')
-        const spanCerrarModal = modalLenguaje.querySelector(`.${styles.close}`)
-        const submitBtnCrearLenguaje = document.getElementById('submitLenguajeBtn')
+//         const modalLenguaje = document.getElementById('modalLenguaje')
+//         const btnCrearLenguaje = document.getElementById('crearLenguajeBtn')
+//         const spanCerrarModal = modalLenguaje.querySelector(`.${styles.close}`)
+//         const submitBtnCrearLenguaje = document.getElementById('submitLenguajeBtn')
     
-        btnCrearLenguaje.onclick = function (event) {
-            event.preventDefault();
-            modalLenguaje.style.display = 'block';
-        };
+//         btnCrearLenguaje.onclick = function (event) {
+//             event.preventDefault();
+//             modalLenguaje.style.display = 'block';
+//         };
     
-        spanCerrarModal.onclick = function () {
-            modalLenguaje.style.display = 'none';
-        };
+//         spanCerrarModal.onclick = function () {
+//             modalLenguaje.style.display = 'none';
+//         };
     
-        window.onclick = function (event) {
-            if (event.target === modalLenguaje) {
-                modalLenguaje.style.display = 'none';
-            }
-        };
+//         window.onclick = function (event) {
+//             if (event.target === modalLenguaje) {
+//                 modalLenguaje.style.display = 'none';
+//             }
+//         };
     
-        submitBtnCrearLenguaje.onclick = async function (event) {
-            event.preventDefault();
+//         submitBtnCrearLenguaje.onclick = async function (event) {
+//             event.preventDefault();
     
-            const nombreLenguajeInput = document.getElementById('nombreLenguaje');
-            const imageInput = document.getElementById('lenguajeImage');
+//             const nombreLenguajeInput = document.getElementById('nombreLenguaje');
+//             const imageInput = document.getElementById('lenguajeImage');
     
-            const nombreLenguaje = nombreLenguajeInput.value;
-            const image = imageInput.value;
+//             const nombreLenguaje = nombreLenguajeInput.value;
+//             const image = imageInput.value;
     
-            const newLenguaje = {
-                name: nombreLenguaje,
-                route_id: routeId,
-                image: image
-            };
+//             const newLenguaje = {
+//                 name: nombreLenguaje,
+//                 route_id: routeId,
+//                 image: image
+//             };
     
-            try {
-                const response = await fetch('http://localhost:3000/lenguajes', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(newLenguaje)
-                });
+//             try {
+//                 const response = await fetch('http://localhost:3000/lenguajes', {
+//                     method: 'POST',
+//                     headers: {
+//                         'Content-Type': 'application/json'
+//                     },
+//                     body: JSON.stringify(newLenguaje)
+//                 });
     
-                if (response.ok) {
-                    alert('Lenguaje creado con éxito');
-                    modalLenguaje.style.display = 'none';
-                } else {
-                    alert('Error al crear el lenguaje');
-                }
-            } catch (error) {
-                console.error('Error al crear el lenguaje:', error);
-                alert('Error al crear el lenguaje');
-            }
-        };
-    };
+//                 if (response.ok) {
+//                     alert('Lenguaje creado con éxito');
+//                     modalLenguaje.style.display = 'none';
+//                 } else {
+//                     alert('Error al crear el lenguaje');
+//                 }
+//             } catch (error) {
+//                 console.error('Error al crear el lenguaje:', error);
+//                 alert('Error al crear el lenguaje');
+//             }
+//         };
+//     };
     
-}
+// }
 
 
 export function Home3Scene() {

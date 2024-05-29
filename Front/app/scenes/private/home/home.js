@@ -23,7 +23,10 @@ export function HomeScene() {
     <div id="all-routes" class="${styles.home_routes_container}"></div>
 
     <!-- Modal para Crear Ruta -->
-    <div id="modalRuta" class="${styles.modal}">
+    
+    <p class="buttonRoute" id="buttonRoute">Add route</p>
+
+    <div id="modalRoute" class="${styles.modal}">
         <div class="${styles['modal-content']}">
             <span class="${styles.close}">&times;</span>
             <h2>Crear Ruta</h2>
@@ -34,7 +37,7 @@ export function HomeScene() {
                 <textarea id="rutaDescription" name="description" placeholder="Descripción de la ruta"></textarea>
                 <label for="rutaImage">Img</label>
                 <input type="text" id="rutaImage" name="image" placeholder="URL de la imagen">
-                <button type="submit" id="submitRutaBtn">Crear Ruta</button>
+                <button type="submit" id="submitRouteBtn">Crear Ruta</button>
             </form>
         </div>
     </div>
@@ -61,7 +64,7 @@ export function HomeScene() {
           <div>
             <h2>Route: ${route.name}</h2>
             <p>${route.description}</p>
-            <a id="${route.id}" class=${styles.butSeeMore}>See more</a>
+            <a id="${route.id}" class="${styles.butSeeMore} seeMoreBtns">See more</a>
           </div>
           <figure>
             <img src="${route.image}" alt="testbg">
@@ -71,14 +74,14 @@ export function HomeScene() {
     document.querySelector(`#loader`).classList.add(styles.hidden);
     document.getElementById('home_container').classList.remove(styles.hidden);
 
-    document.querySelectorAll(`.${styles.butSeeMore}`).forEach(btn => {
+    document.querySelectorAll(`.seeMoreBtns`).forEach(btn => {
       btn.addEventListener('click' , (e) => {
         navigateTo(`/dashboard/routes/languages?id=${e.target.id}`)
       })
     })
 
-    const modal = document.getElementById('modalRuta');
-    const btn = document.getElementById('crearRutaBtn');
+    const modal = document.getElementById('modalRoute');
+    const btn = document.getElementById('buttonRoute');
     const span = modal.querySelector(`.${styles.close}`);
 
     btn.onclick = function (event) {
@@ -96,7 +99,9 @@ export function HomeScene() {
         }
     }
 
+
     // logica para manejar el envio del formulario
+    const submitBtn = document.getElementById("submitRouteBtn")
     submitBtn.onclick = async function (event) {
       event.preventDefault()
   
@@ -115,7 +120,7 @@ export function HomeScene() {
       }
   
       try {
-          const response = await fetch('http://localhost:3000/rutas', {
+          const response = await fetch('http://localhost:4000/api/routes', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json'
