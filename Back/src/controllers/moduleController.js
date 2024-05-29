@@ -1,4 +1,4 @@
-const { filterModulesByLanguage, getModuleById } = require("../models/moduleModel");
+const { filterModulesByLanguage, getModuleById, saveModule } = require("../models/moduleModel");
 
 exports.getModules = async (req, res) => {
     try {
@@ -24,6 +24,17 @@ exports.getModuleById = async (req, res) => {
         res.json(module);
     } catch (err) {
         console.error('Error en getModuleById:', err);
+        res.status(500).json({ message: 'Error en el servidor' });
+    }
+}
+
+exports.saveModule = async (req, res) => {
+    try {
+        const { name, languageId, content, image } = req.body;
+        const module = await saveModule(name, languageId, content, image);
+        res.status(200).json(module);
+    } catch (err) {
+        console.error('Error en saveModule:', err);
         res.status(500).json({ message: 'Error en el servidor' });
     }
 }

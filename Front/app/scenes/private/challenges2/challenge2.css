@@ -1,0 +1,32 @@
+.newPage{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    transition: clip-path 1s ease-in-out;
+    clip-path: circle(0% at center);
+    display: flex;
+    /* overflow: hidden; */
+}
+.emptyDiv,.imageBackground, .imageBackground img{
+    width: 100%;
+    height: 100%;
+
+}
+
+.emptyDiv{
+    position: absolute;
+    background-color: rgba(22, 22, 22,0.5);
+
+    
+}
+
+.imageBackground{
+    z-index: -1;
+    position: absolute;
+}
+
+.title{
+    color: antiquewhite;
+
+
+}
