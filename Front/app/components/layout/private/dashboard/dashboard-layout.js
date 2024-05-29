@@ -33,5 +33,5 @@ export function DashboardLayout(pageContent, logic, footer, navbarData,) {
 
   sidebar.logic();
   logic();
-  document.getElementById('logout').addEventListener('click', logOut)
+  document.getElementById('logout').addEventListener('click', logOut);
 }

@@ -10,7 +10,7 @@
 
 .sidebar {
     grid-area: sidebar;
-    position: absolute;
+    position: fixed;
     left: -135px;
     box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
     z-index: 1;
@@ -18,6 +18,9 @@
 }
 
 .navbar {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
     grid-area: navbar;
 }
 

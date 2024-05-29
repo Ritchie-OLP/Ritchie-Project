@@ -29,7 +29,7 @@ export function SidebarMenu() {
   const pageContent = `
   <aside class="${styles["sidebar-menu"]}">
   <ul>
-    <li id="backBtn" class="${styles.backButton}"><i id="backBtnIcon" class="fa-solid fa-circle-arrow-left"></i></li>
+    <li class="${styles.backButton}"><i id="backBtn" class="fa-solid fa-circle-arrow-left"></i></li>
     ${data.map((item, ind) => `
       <li id="${item.href}" class="${item.active ? styles.active : ''} ${styles.sidebarOptions}">
         <button type="button">${item.name}</button>
@@ -55,17 +55,16 @@ export function SidebarMenu() {
     backBtn.addEventListener('click', () => {
       const bigContainer = document.getElementById('bigContainer');
       const sidebar = document.getElementById('sidebar');
-      const backBtnIcon = document.getElementById('backBtnIcon');
       console.log(sidebar.style.left);
 
       if (sidebar.style.left == '0px') {
         sidebar.style.left = '-135px';
         bigContainer.style.gridTemplateColumns = '60px 1fr';
-        backBtnIcon.style.transform = 'rotate(1.5turn)';
+        backBtn.style.transform = 'rotate(1.5turn)';
       } else {
         sidebar.style.left = '0px';
         bigContainer.style.gridTemplateColumns = '200px 1fr';
-        backBtnIcon.style.transform = 'rotate(0turn)';
+        backBtn.style.transform = 'rotate(0turn)';
       }
     })
   }
