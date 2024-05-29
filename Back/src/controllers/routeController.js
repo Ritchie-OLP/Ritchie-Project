@@ -1,4 +1,4 @@
-const { getAllRoutes, getRouteById } = require("../models/routeModel");
+const { getAllRoutes, getRouteById, saveRoute } = require("../models/routeModel");
 
 exports.getAllRoutes = async (req, res) => {
     try {
@@ -20,6 +20,17 @@ exports.getRouteById = async (req, res) => {
         res.status(200).json(route);
     } catch (err) {
         console.error('Error en getRouteById:', err);
+        res.status(500).json({ message: 'Error en el servidor' });
+    }
+}
+
+exports.saveRoute = async (req, res) => {
+    try {
+        const { name, description, image } = req.body;
+        const route = await saveRoute(name, description, image);
+        res.status(200).json(route);
+    } catch (err) {
+        console.error('Error en saveRoute:', err);
         res.status(500).json({ message: 'Error en el servidor' });
     }
 }
