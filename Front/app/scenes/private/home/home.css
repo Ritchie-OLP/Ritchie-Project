@@ -1,4 +1,6 @@
 .home_elements {
+    font-family: 'Quicksand';
+    color: white;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -9,6 +11,14 @@
     font-size: 17px;
 }
 
+.home_elements h1 {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 64px;
+    color: #FFFFFF;
+}
 
 .containerEditor{
     width: 100%;
@@ -84,6 +94,10 @@
     height: 100%;
     padding: 40px;
     transition: .4s all;
+}
+
+.home_route_card > div > h2 {
+    font-family: 'Manrope';
 }
 
 .home_route_card:hover > div {

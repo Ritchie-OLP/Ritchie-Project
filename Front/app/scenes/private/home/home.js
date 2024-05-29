@@ -5,9 +5,6 @@ import background from '../../../assets/images/background_modules.jpg';
 
 export function HomeScene() {
 
-  // generate random number between 1 an 10
-  const randomNumber = Math.floor(Math.random() * 10) + 1;
-
   const footer = `
   <footer><p>All rights reserved.</p></footer>
   `;

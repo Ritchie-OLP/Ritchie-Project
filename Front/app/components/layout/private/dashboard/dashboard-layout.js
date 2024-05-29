@@ -4,32 +4,23 @@ import { NavigationBar } from "../../../navigation-bar/navigation-bar";
 import { SidebarMenu } from "../../../sidebar-menu/sidebar-menu";
 import styles from './dashboard-layout.css';
 
-export function DashboardLayout(pageContent, logic, footer, navbarData, sidebarData,) {
+export function DashboardLayout(pageContent, logic, footer, navbarData,) {
 
   // hace la peticion al backend.
 
   const root = document.getElementById('root');
 
-  sidebarData = [
-    { href: '/dashboard', name: 'Home' },
-    { href: '/dashboard/reports', name: 'Reports' },
-    { href: '/dashboard/settings', name: 'Settings' },
-    { href: '/dashboard/users', name: 'Users' },
-    { href: '/dashboard/products', name: 'Products' },
-    { href: '/dashboard/forum', name: 'Forum' },
-    { href: '/dashboard/show-cases', name: 'Showcases' },
-    { href: '/dashboard/challenges', name: 'Challenges'},
-  ];
-
   navbarData = {
-    user: 'Nicolas Picon',
+    user: JSON.parse(localStorage.getItem('user')).username,
     userImage: 'https://randomuser.me/api/portraits/men/75.jpg',
   };
 
+  const sidebar = SidebarMenu();
+
   root.innerHTML = `
-  <div class="${styles.container}">
-    <div class="${styles.sidebar}">
-      ${SidebarMenu(sidebarData)}
+  <div id="bigContainer" class="${styles.container}">
+    <div id="sidebar" class="${styles.sidebar}">
+      ${sidebar.pageContent}
     </div>
     <div class="${styles.navbar}">
       ${NavigationBar(navbarData)}
@@ -40,13 +31,7 @@ export function DashboardLayout(pageContent, logic, footer, navbarData, sidebarD
   </div>
   `;
 
+  sidebar.logic();
   logic();
-
-  sidebarData.forEach(({ href, icon, label }) => {
-    document.getElementById(href).addEventListener('click', () => {
-      navigateTo(href);
-    });
-  });
-
   document.getElementById('logout').addEventListener('click', logOut)
 }
