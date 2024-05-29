@@ -26,5 +26,5 @@
 
 .main {
     grid-area: main;
-    /* padding: var(--spacing-3); */
+    padding-top: 60px;
 }
