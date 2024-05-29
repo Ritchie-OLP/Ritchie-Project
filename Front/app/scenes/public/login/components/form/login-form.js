@@ -46,6 +46,7 @@ export async function LoginFormComponent() {
     if (logdata) {
       const token = logdata.token;
       const user = logdata.user;
+      console.log(user);
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
       navigateTo('/dashboard');

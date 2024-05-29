@@ -7,7 +7,7 @@ import goku from '../../../assets/goku.jpeg';
 
 export function UserView() {
     const theUser = JSON.parse(localStorage.getItem('user'));
-    const nameUser = theUser.username
+    const creationDate = theUser.creationDate.slice(0, 10);
     const pageContent = `
     <div class="${styles["container"]}">
         <div class="${styles["content"]}">
@@ -24,8 +24,7 @@ export function UserView() {
                 <h2>Hola ${theUser.username}, bienvenido a la vista de tu perfil</h2>
                 <p>Nombre de usuario: ${theUser.username}</p>
                 <p>Correo: ${theUser.email}</p>
-                <p>Fecha de creación del perfil: ${theUser.createdAt}</p>
-                <p>Ultimo acceso: ${theUser.updatedAt}</p>
+                <p>Fecha de creación del perfil: ${creationDate}</p>
             </div>
             <div class="${styles["right-colum"]}">
                 <div class="${styles["right-colum-icon"]}">
@@ -34,8 +33,6 @@ export function UserView() {
                 <div class="${styles["info-points"]}">
                     <h2>Tus puntos</h2>
                     <p>${theUser.points}</p>
-                    <h2>Tu nivel</h2>
-                    <p>${theUser.level}</p>
                 </div>
             </div>
         </div>
@@ -43,6 +40,7 @@ export function UserView() {
 
     `; //Aqui va el html
     const logic = () => {
+        
         //Aqui va la logica de JS
     }
     return {
