@@ -1,4 +1,4 @@
-.container {
+/* .container {
     display: grid;
     grid-template-areas: "sidebar navbar"
                         "sidebar main";
@@ -27,4 +27,40 @@
 .main {
     grid-area: main;
     padding-top: 60px;
+} */
+
+.container {
+    display: flex;
+    flex-direction: column;
 }
+
+.navbar {
+    position: fixed;
+    width: 100%;
+    height: fit-content;
+    top: 0;
+    z-index: 2;
+}
+
+.mainContent {
+    display: flex;
+}
+
+.mainElement {
+    flex-basis: 1;
+}
+
+.main {
+    padding-left: 65px;
+    padding-top: 100px;
+    width: 100%;
+}
+
+.sidebar {
+    position: fixed;
+    z-index: 1;
+    left: -135px;
+    height: 100%;
+    transition: all ease-in-out .4s;
+}
+

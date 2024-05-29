@@ -19,14 +19,16 @@ export function DashboardLayout(pageContent, logic, footer, navbarData,) {
 
   root.innerHTML = `
   <div id="bigContainer" class="${styles.container}">
-    <div id="sidebar" class="${styles.sidebar}">
-      ${sidebar.pageContent}
-    </div>
     <div class="${styles.navbar}">
       ${NavigationBar(navbarData)}
     </div>
-    <div class="${styles.main}">
-      ${pageContent}
+    <div class="${styles.mainContent}">
+      <div id="sidebar" class="${styles.sidebar} ${styles.mainElement}">
+        ${sidebar.pageContent}
+      </div>
+      <div class="${styles.main} ${styles.mainElement}">
+        ${pageContent}
+      </div>
     </div>
   </div>
   `;

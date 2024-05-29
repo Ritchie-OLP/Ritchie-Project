@@ -41,7 +41,7 @@ export function HomeScene() {
           <div>
             <h2>Route: ${route.name}</h2>
             <p>${route.description}</p>
-            <a id="${route.id}" class=${styles.butSeeMore}>See more</a>
+            <a id="${route.id}" class="${styles.butSeeMore} seeMoreBtns">See more</a>
           </div>
           <figure>
             <img src="${route.image}" alt="testbg">
@@ -51,7 +51,7 @@ export function HomeScene() {
     document.querySelector(`#loader`).classList.add(styles.hidden);
     document.getElementById('home_container').classList.remove(styles.hidden);
 
-    document.querySelectorAll(`.${styles.butSeeMore}`).forEach(btn => {
+    document.querySelectorAll(`.seeMoreBtns`).forEach(btn => {
       btn.addEventListener('click' , (e) => {
         navigateTo(`/dashboard/routes/languages?id=${e.target.id}`)
       })
