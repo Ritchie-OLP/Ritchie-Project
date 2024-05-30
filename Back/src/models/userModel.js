@@ -40,3 +40,13 @@ exports.findById = async (id) => {
   const { rows } = await pool.query(query, [id]);
   return rows[0];
 };
+
+exports.updatePoints = async (id, points) => {
+  const query = `UPDATE users
+                  SET points = $1
+                  WHERE id = $2
+                  RETURNING id, username, points`;
+  const values = [points, id];
+  const { rows } = await pool.query(query, values);
+  return rows[0];
+};

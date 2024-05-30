@@ -1,6 +1,6 @@
 import styles from './language.css';
-import background from '../../../../../assets/images/background_modules.jpg';
-import remoteControl from "../../../../../assets/images/control-remoto.png"
+import background from '../../../../../assets/images/fondo.jpg';
+import remoteControl from "../../../../../assets/images/control-remoto.png";
 import { navigateTo } from '../../../../../Router';
 
 
