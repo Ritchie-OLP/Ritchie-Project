@@ -26,14 +26,14 @@ exports.getChallengeById = async (req, res) => {
 
 exports.saveChallenge = async (req, res) => {
     try {
-        const challenge = req.body;
-        const savedChallenge = await saveChallenge(challenge);
-        res.status(201).json(savedChallenge);
+        const { content, name, userId, routeId, languageId, moduleId } = req.body;
+        const challenge = await saveChallenge(content, name, userId, routeId, languageId, moduleId);
+        res.status(200).json(challenge);
     } catch (error) {
         console.error('Error en saveChallenge:', error);
         res.status(500).json({ message: 'Error en el servidor' });
     }
-};
+}
 
 exports.updateChallenge = async (req, res) => {
     try {

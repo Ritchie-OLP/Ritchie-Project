@@ -10,12 +10,11 @@ exports.getChallengeById = async (id) => {
     return challenge.rows[0];
 }
 
-exports.saveChallenge = async (challenge) => {
-    const newChallenge = await pool.query(
-        "INSERT INTO challenges (name, content, user_id) VALUES ($1, $2, $3) RETURNING *",
-        [challenge.name, challenge.content, challenge.user_id]
-    );
-    return newChallenge.rows[0];
+exports.saveChallenge = async (content, name, userId, routeId, languageId, moduleId) => {
+    const query = `INSERT INTO challenges (content, name, user_id, route_id, language_id, module_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`;
+    const values = [content, name, userId, routeId, languageId, moduleId];
+    const { rows } = await pool.query(query, values);
+    return rows[0];
 }
 
 exports.updateChallenge = async (id, challenge) => {
