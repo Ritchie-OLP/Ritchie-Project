@@ -39,7 +39,6 @@ export function NavigationBar(
       } else if (window.matchMedia("(max-width: 950px)").matches) {
         leftValue = '250px';
       }
-      console.log(window.innerWidth);
       if (!isToggled) {
         burBtn.style.transform = 'rotate(.25turn)';
         burBtn.style.color = '#181E4B';

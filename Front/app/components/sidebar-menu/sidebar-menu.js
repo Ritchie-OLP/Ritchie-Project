@@ -55,6 +55,11 @@ export function SidebarMenu() {
         navigateTo(href);
       });
     });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const sidebar = document.getElementById('sidebar-main');
+      sidebar.style.left = '0px'; // Set initial left value
+    });
   
     const backBtn = document.getElementById('backBtn');
     const sidebar = document.getElementById('sidebar-main');
