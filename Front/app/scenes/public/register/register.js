@@ -7,10 +7,6 @@ export async function RegisterPage() {
     const root = document.getElementById('root');
 
     root.innerHTML = `
-  <div class="${style.login_container}">
-    <div class="wave"></div>
-    <div class="wave"></div>
-    <div class="wave"></div>
     <form id="loginForm" class="${style.form}">
       <figure class="${style.login_logo}">
         <img src="${riwiLogo}" alt="Riwi Logo">
@@ -33,7 +29,6 @@ export async function RegisterPage() {
       </div>
       <p class="${style.signup_link}">Already have an account? <a href="/login">Sign in</a></p>
     </form>
-</div>
     `;
 
     const form = document.getElementById('loginForm');
