@@ -61,11 +61,6 @@ export function Modules(params) {
             <button class="${styles.add_module_btn}" id="buttonModule">Add module</button>
 
             <h1 class="${styles.title} ${styles.fontTitles}">Welcome to ${language.name} modules</h1>
-    
-            <div class="${styles.imageBackground}">
-                <div class="${styles.emptyDiv}"></div>
-                <img src=${background} alt="background-image">
-            </div>
 
             <div class=${styles.mainContainerIcons}>
                 <div class=${styles.contIconLanguage}>

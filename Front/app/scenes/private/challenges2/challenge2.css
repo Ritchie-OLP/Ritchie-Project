@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Freeman&family=Jaro:opsz@6..72&family=Poetsen+One&display=swap');
 
 .newPage{
+    background-size: 100% 100%;
     position: relative;
     width: 100%;
     height: 100%;
@@ -123,6 +124,25 @@
     box-shadow: 6px 14px 26px 13px rgba(171,136,209,1);
 }
 
+
+@media (max-width: 1200px) {
+    .containerCards:hover > .ninjaImages {
+        transform: none;
+        box-shadow: none; 
+        border-radius: 20%;
+    }
+
+    .containerCards:hover > div {
+        transform: none;
+        box-shadow: none; 
+        border-radius: 20%;
+    }
+    
+
+}
+
+
+
 .modal1,.modal2,.modal3{
     width: 100%;
     position: absolute;
@@ -140,7 +160,7 @@
 }
 
 .modal3{
-    height: 100vh;
+    height: 88vh;
     bottom: 0%;
 }
 .buttonClose{
@@ -166,42 +186,31 @@
 } */
 
 
-.modal1 {
-    background: rgb(25,38,99);
-    background: radial-gradient(circle, rgb(17, 27, 69) 0%, rgba(97, 161, 201, 0.978) 100%);
-}
 
 .containerModal1{
+    background-image: url("https://i.imgur.com/vOG0B77.jpeg");
     width: 100%;
     height: 100%;
-    background-image: url("https://i.imgur.com/EXYjAIC.png");
     background-size: 100% 100%; 
     background-position: center; 
     background-repeat: no-repeat; 
     display: flex;
     justify-content: center;
-    align-items: center;
 
 }
 
 .containerModal1 p{
+    background-color: rgba(27, 82, 102,0.7);
+    border-radius: 5px;
+    color: rgb(175, 175, 187);
     width: 70%;
-    padding: 5%;
+    padding: 100px 70px 100px;
     font-size: 1.2rem;
     line-height: 3.5vh;
     text-align: justify;
 
 
 }
-
-/* @media (max-width: 900px){
-
-    .containerModal1 p{
-        font-size: 1em;
-        color: aquamarine;
-    }
-} */
-
 
 
 .modal2{

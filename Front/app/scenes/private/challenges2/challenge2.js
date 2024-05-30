@@ -48,17 +48,13 @@ export function ChallengeScene2(params) {
 
         containerPage.innerHTML = `
         <h2 class="${styles.title} ${styles.fontTitles}">${response.name}</h2>
-            <div class="${styles.imageBackground}">
-                <div class="${styles.emptyDiv}"></div>
-                <img src=${background} alt="background-image">
-            </div>
             <div class="${styles.generalChallenges}">
                 ${
                 arrayNinjas.map((ninja,idx) => {
                     return `
                         <div class="${styles.containerChallenge} text" id="container${idx + 1}">
                             <div class="${styles.containerCards}">
-                                 <img src=${ninja} alt="ninja" class="${styles.ninjaImages}">
+                                    <img src=${ninja} alt="ninja" class="${styles.ninjaImages}">
                                  <div>
                                     <p class="${styles.stringNinja} ${styles. stringNinjaPosition}">${arrayStrings[idx]}</p>
                                  </div>
@@ -126,7 +122,7 @@ export function ChallengeScene2(params) {
 
         modal1.insertAdjacentHTML('beforeend', `
         <div class=${styles.containerModal1}>
-            <p class=${styles.parraf}>
+            <p>
                 ${response.content}
             </p>
         </div>
@@ -209,13 +205,22 @@ export function ChallengeScene2(params) {
         console.log(imageHangMan);
 
         let stringHangMan = response.hang_word
-        console.log(stringHangMan);
+        console.log(stringHangMan, 'hang_word');
+        console.log();
 
-        const arrayWords = stringHangMan.split(',');
+        let arrayWords = [];
+        if(!stringHangMan){
+            arrayWords = ["software","javascript","methods","frontend","language","backend"];
+        }else{
+            arrayWords = stringHangMan.split(",");
+        }
+
+        console.log(arrayWords);
+
         console.log(arrayWords);
 
         let secretWord = arrayWords[Math.floor(Math.random() * arrayWords.length)];
-        // alert(secretWord)
+        console.log(secretWord)
         let hiddenWord = secretWord.replace(/./g,"_ ");
         // alert(hiddenWord)
         document.getElementById('hiddenWord').innerHTML = hiddenWord;
@@ -257,7 +262,7 @@ export function ChallengeScene2(params) {
                 }else{
                     imageHangMan.src = hangMan7;
                     setTimeout(() => {
-                        showAlert(`¡Sorry! \n You lost the game `);
+                        showAlert(`¡Sorry! \n You lost the game\n The right word was ${secretWord}`);
                     resetGame();
                     },300)
                     gameLost++
