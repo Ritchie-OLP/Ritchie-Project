@@ -9,7 +9,7 @@ export function ConsoleJS() {
         <div class="${styles["console-container"]}">
             <div class="${styles["input-container"]}">
                 <h3>Ingresa código JavaScript:</h3>
-                <textarea id="jsInput">console.log('Hello, World!');</textarea>
+                <textarea id="jsInput">3+12</textarea>
             </div>
             <div id="outputContainer" class="${styles["output-container"]}">
                 <div class="${styles["title"]}">
