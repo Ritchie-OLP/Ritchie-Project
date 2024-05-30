@@ -1,5 +1,6 @@
 import styles from './navigation-bar.css';
 import navLogo from '../../assets/images/riwi_nav_logo.png';
+import {navigateTo} from '../../Router';
 
 export function NavigationBar(
   { user, userImage } =
@@ -9,7 +10,7 @@ export function NavigationBar(
   const pageContent = `
   <div class="${styles.container}">
     <figure>
-      <a href="/dashboard/user-view"><img src="${navLogo}" alt="Riwi"></a>
+      <a id="main-menu-logo"><img src="${navLogo}" alt="Riwi"></a>
     </figure>
     <p>${user}</p>
     <img src="${userImage}" alt="User image">
@@ -18,6 +19,11 @@ export function NavigationBar(
   `;
 
   const logic = () => {
+
+    const mainMenuLogo = document.getElementById('main-menu-logo');
+    mainMenuLogo.addEventListener('click', () => {
+      navigateTo('/dashboard/');
+    });
 
     document.addEventListener('DOMContentLoaded', function () {
       const sidebar = document.getElementById('sidebar-main');
