@@ -18,7 +18,7 @@ export function NavigationBar(
   `;
 
   const logic = () => {
-    
+
     document.addEventListener('DOMContentLoaded', function () {
       const sidebar = document.getElementById('sidebar-main');
       sidebar.style.left = '0px'; // Set initial left value
@@ -31,20 +31,23 @@ export function NavigationBar(
     let isToggled = false;
 
     // Define media queries and their corresponding left values
-    let leftValue;
-    if (window.matchMedia("(max-width: 475px)").matches) {
-      leftValue = '100%';
-    } else if (window.matchMedia("(max-width: 950px)").matches) {
-      leftValue = '250px';
-    } else {
-      leftValue = '200px';
-    }
 
     burBtn.addEventListener('click', () => {
+      let leftValue;
+      if (window.matchMedia("(max-width: 475px)").matches) {
+        leftValue = '100%';
+      } else if (window.matchMedia("(max-width: 950px)").matches) {
+        leftValue = '250px';
+      }
+      console.log(window.innerWidth);
       if (!isToggled) {
+        burBtn.style.transform = 'rotate(.25turn)';
+        burBtn.style.color = '#181E4B';
         sidebar.style.left = leftValue;
         isToggled = true;
       } else {
+        burBtn.style.transform = 'rotate(0turn)';
+        burBtn.style.color = '#6B5CFF';
         sidebar.style.left = '0';
         isToggled = false;
       }
