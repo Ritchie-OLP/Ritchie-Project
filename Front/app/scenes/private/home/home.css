@@ -24,7 +24,6 @@
     height: 100%;
 }
 
-
 .visible {
     display: block;
 }
@@ -164,10 +163,8 @@
     }
 }
 
-/* estilos modal
-
-/* Estilos para el segundo modal */
-#modalRoute {
+/* Estilos para el modal */
+.modal {
     display: none;
     position: fixed;
     z-index: 1;
@@ -235,4 +232,21 @@
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+.btn_route {
+    position: absolute;
+    top: 20px; /* Ajusta el valor según sea necesario */
+    right: 20px; /* Ajusta el valor según sea necesario */
+    background-color: #252547; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Manito de cursor */
+    z-index: 1; /* Asegura que esté sobre otros elementos */
+}
+
+.buttonRoute:hover {
+    background-color: #3b3b78; /* Color de fondo al pasar el ratón */
 }

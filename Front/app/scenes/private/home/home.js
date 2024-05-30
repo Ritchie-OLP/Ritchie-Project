@@ -12,6 +12,8 @@ export function HomeScene() {
 
   const pageContent = `
   <div class="${styles.home_elements} ${styles.hidden}" id="home_container">
+  <button class="buttonRoute" id="buttonRoute">Add route</button>
+  
     <div class=${styles.containerEditor}>
       <img src=${background} alt="background">
     </div>
@@ -21,22 +23,30 @@ export function HomeScene() {
     <div id="all-routes" class="${styles.home_routes_container}"></div>
 
     <!-- Modal para Crear Ruta -->
-    
-    <p class="buttonRoute" id="buttonRoute">Add route</p>
 
     <div id="modalRoute" class="${styles.modal}">
-        <div class="${styles['modal-content']}">
-            <span class="${styles.close}">&times;</span>
-            <h2>Crear Ruta</h2>
-            <form id="crearRutaForm">
-                <label for="rutaName">Nombre de la ruta</label>
-                <input type="text" id="rutaName" name="name" placeholder="Nombre de la ruta">
-                <label for="rutaDescription">Descripción</label>
-                <textarea id="rutaDescription" name="description" placeholder="Descripción de la ruta"></textarea>
-                <label for="rutaImage">Img</label>
-                <input type="text" id="rutaImage" name="image" placeholder="URL de la imagen">
-                <button type="submit" id="submitRouteBtn">Crear Ruta</button>
-            </form>
+      <div class="${styles['modal-content']}">
+          <span class="${styles.close}">&times;</span>
+          <h2>Crear Ruta</h2>
+          <form id="crearRutaForm" class="${styles.form}">
+            <table>
+              <tr>
+                  <td><label for="rutaName">Route's name</label></td>
+                  <td><input type="text" id="rutaName" name="name" placeholder="Nombre de la ruta"></td>
+              </tr>
+              <tr>
+              <td><label for="rutaImage">Image</label></td>
+              <td><input type="text" id="rutaImage" name="image" placeholder="URL de la imagen"></td>
+              </tr>
+              <tr>
+                  <td><label for="rutaDescription">Description</label></td>
+                  <td><textarea id="rutaDescription" name="description" placeholder="Route's description" rows="4" cols="50"></textarea></td>
+              </tr>
+              <tr>
+                  <td colspan="2" style="text-align: center;"><button type="submit" id="submitRouteBtn">Crear Ruta</button></td>
+              </tr>
+            </table>
+          </form>
         </div>
     </div>
     ${footer}
