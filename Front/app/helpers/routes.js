@@ -14,7 +14,8 @@ import { ChallengeScene2 } from '../scenes/private/challenges2/challenge2';
 import { ConsoleHTML } from '../scenes/private/consolehtml'
 import { ConsoleCSS } from '../scenes/private/consolecss'
 import { ConsoleJS } from '../scenes/private/consolejs'
-import {ConsoleAll } from '../scenes/private/consoleall/'
+import { ConsoleAll } from '../scenes/private/consoleall/'
+
 
 
 export const routes = {
