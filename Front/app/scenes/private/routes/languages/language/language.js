@@ -13,8 +13,6 @@ export function LanguageScenes(params) {
 
     <!-- Modal para Crear Lenguaje -->
 
-    <p class="buttonLanguage" id="buttonLanguage">Add route</p>
-
     <div id="modalLanguage" class="${styles.modal}">
         <div class="${styles['modal-content']}">
             <span class="${styles.close}">&times;</span>
@@ -24,7 +22,9 @@ export function LanguageScenes(params) {
                 <input type="text" id="nameLanguage" name="name" placeholder="Nombre del lenguaje">
                 <label for="lenguajeImage">Img</label>
                 <input type="text" id="languageImage" name="image" placeholder="URL de la imagen">
-                <button type="submit" id="submitLanguageBtn">Crear Lenguaje</button>
+                <div class="${styles.btnContainer}"> <!-- Nuevo contenedor para el botón -->
+                  <button type="submit" id="submitLanguageBtn">Crear Lenguaje</button>
+                 </div>
             </form>
         </div>
     </div>
@@ -61,6 +61,7 @@ export function LanguageScenes(params) {
 
       
       containerPage.innerHTML = `
+      <button class="${styles.add_language_btn}" id="buttonLanguage">Add Language</button>
       <h1 class="${styles.title} ${styles.fontTitles}">Welcome to ${route.name} languages</h1>
       <div class=${styles.containerEditor}>
           <img src=${background} alt="background">
@@ -114,8 +115,13 @@ export function LanguageScenes(params) {
       submitBtnCrearLenguage.onclick = async function (event) {
         event.preventDefault()
 
-        const nameLanguage = document.getElementById('nameLanguage').value
-        const imageLanguage = document.getElementById('languageImage').value
+        const nameLanguage = document.getElementById('nameLanguage').value.trim()
+        const imageLanguage = document.getElementById('languageImage').value.trim()
+
+        if (!nameLanguage || !imageLanguage) {
+          alert('Por favor, complete todos los campos.')
+          return
+      }
 
         const newLanguage = {
           name: nameLanguage,
@@ -156,10 +162,3 @@ export function LanguageScenes(params) {
 
 
   }//Cierre de la funcion LanguageScenes
-
-
-
-
-
-
-  

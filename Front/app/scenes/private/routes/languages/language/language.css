@@ -160,14 +160,22 @@ body{
     border-radius: 5px;
 }
 
-.modal-content button {
+.btnContainer button {
     background-color: #252547;
     color: #fff;
+    width: auto;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
+}
+
+.btnContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    
 }
 
 .close {
@@ -184,23 +192,20 @@ body{
     cursor: pointer;
 }
 
-/* Estilos para el botón */
-.buttonLanguage {
-    display: inline-block;
+/* Estilos para el boton de abrir el modal */
+.add_language_btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
     background-color: #252547;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-    margin: 20px 0;
-    font-size: 16px;
+    color: #fff; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    z-index: 1;
 }
 
-.buttonLanguage:hover {
-    background-color: #1e1e3a;
+.add_language_btn:hover {
+    background-color: #3b3b78;
 }
-
-
-

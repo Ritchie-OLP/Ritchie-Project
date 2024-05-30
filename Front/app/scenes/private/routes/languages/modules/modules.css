@@ -251,9 +251,16 @@
     width: calc(100% - 22px);
 }
 
-.modal-content button {
+.formModal {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content > form > button {
     background-color: #252547;
     color: #fff;
+    width: auto;
+    align-self: center; 
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -276,27 +283,20 @@
 }
 
 /* Estilos para el botón */
-.buttonModule {
-    display: inline-block;
-    background-color: #252547;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
+.add_module_btn {
     position: absolute;
     top: 10px;
-    right: 10px;
-    z-index: 100;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: bold;
-    line-height: 1.5;
+    right: 20px;
+    width: auto;
+    background-color: #252547;
+    color: #fff; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    z-index: 1;
 }
 
-.buttonModule:hover {
-    background-color: #1f1f3a;
+.add_module_btn:hover {
+    background-color: #3b3b78;
 }
-
