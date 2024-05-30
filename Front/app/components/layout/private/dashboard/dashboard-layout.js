@@ -4,6 +4,7 @@ import { NavigationBar } from "../../../navigation-bar/navigation-bar";
 import { SidebarMenu } from "../../../sidebar-menu/sidebar-menu";
 import userIcon from "../../../../assets/images/user-icon.png";
 import styles from './dashboard-layout.css';
+const theUser = JSON.parse(localStorage.getItem('user'));
 
 export function DashboardLayout(pageContent, logic, footer, navbarData,) {
 
