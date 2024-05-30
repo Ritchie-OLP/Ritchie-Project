@@ -1,5 +1,6 @@
 import styles from './sidebar-menu.css';
 import { navigateTo } from "../../Router";
+import userIcon from "../../assets/images/user-icon.png";
 
 export function SidebarMenu() {
 
@@ -27,9 +28,13 @@ export function SidebarMenu() {
   ]
 
   const pageContent = `
-  <aside class="${styles["sidebar-menu"]}">
+  <aside id="sidebar-main" class="${styles["sidebar-menu"]}">
   <ul>
-    <li class="${styles.backButton}"><i id="backBtn" class="fa-solid fa-circle-arrow-left"></i></li>
+    <li class="${styles.backButton} ${styles.backButtonTwo}">
+      <p>${JSON.parse(localStorage.getItem('user')).username}</p>
+      <img src="${userIcon}" alt="User image">
+    </li>
+    <li class="${styles.backButton} ${styles.backButtonOne}"><i id="backBtn" class="fa-solid fa-circle-arrow-left"></i></li>
     ${data.map((item, ind) => `
       <li id="${item.href}" class="${item.active ? styles.active : ''} ${styles.sidebarOptions}">
         <button type="button">${item.name}</button>
@@ -52,19 +57,17 @@ export function SidebarMenu() {
     });
   
     const backBtn = document.getElementById('backBtn');
+    const sidebar = document.getElementById('sidebar-main');
+    sidebar.style.left = '0px';
     backBtn.addEventListener('click', () => {
-      const bigContainer = document.getElementById('bigContainer');
-      const sidebar = document.getElementById('sidebar');
       console.log(sidebar.style.left);
 
       if (sidebar.style.left == '0px') {
-        sidebar.style.left = '-135px';
-        bigContainer.style.gridTemplateColumns = '60px 1fr';
-        backBtn.style.transform = 'rotate(1.5turn)';
+        sidebar.style.left = '135px';
+        backBtn.style.transform = 'rotate(0turn)';
       } else {
         sidebar.style.left = '0px';
-        bigContainer.style.gridTemplateColumns = '200px 1fr';
-        backBtn.style.transform = 'rotate(0turn)';
+        backBtn.style.transform = 'rotate(1.5turn)';
       }
     })
   }

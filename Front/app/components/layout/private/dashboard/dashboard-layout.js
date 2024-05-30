@@ -2,6 +2,7 @@ import { navigateTo } from "../../../../Router";
 import { logOut } from "../../../../helpers";
 import { NavigationBar } from "../../../navigation-bar/navigation-bar";
 import { SidebarMenu } from "../../../sidebar-menu/sidebar-menu";
+import userIcon from "../../../../assets/images/user-icon.png";
 import styles from './dashboard-layout.css';
 
 export function DashboardLayout(pageContent, logic, footer, navbarData,) {
@@ -12,15 +13,16 @@ export function DashboardLayout(pageContent, logic, footer, navbarData,) {
 
   navbarData = {
     user: JSON.parse(localStorage.getItem('user')).username,
-    userImage: 'https://randomuser.me/api/portraits/men/75.jpg',
+    userImage: userIcon,
   };
 
   const sidebar = SidebarMenu();
+  const navbar = NavigationBar(navbarData);
 
   root.innerHTML = `
   <div id="bigContainer" class="${styles.container}">
     <div class="${styles.navbar}">
-      ${NavigationBar(navbarData)}
+      ${navbar.pageContent}
     </div>
     <div class="${styles.mainContent}">
       <div id="sidebar" class="${styles.sidebar} ${styles.mainElement}">
@@ -34,6 +36,7 @@ export function DashboardLayout(pageContent, logic, footer, navbarData,) {
   `;
 
   sidebar.logic();
+  navbar.logic();
   logic();
   document.getElementById('logout').addEventListener('click', logOut);
 }

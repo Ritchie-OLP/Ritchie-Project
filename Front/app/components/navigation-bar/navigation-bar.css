@@ -27,11 +27,32 @@
 .container figure {
     margin-right: auto;
     height: 100px;
-    width: 100px;
+    width: 100px
+}
+
+.container figure a {
+    display: flex;
 }
 
 .container figure a img {
     height: 100%;
     width: 100%;
     object-fit: contain;
+}
+
+.container i {
+    font-size: 27px;
+    color: #6B5CFF;
+    display: none;
+    transition: all ease-in-out .4s;
+}
+
+@media (max-width: 950px) {
+    .container > p, .container > img {
+        display: none;
+    }
+
+    .container i {
+        display: flex;
+    }
 }
