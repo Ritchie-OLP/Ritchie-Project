@@ -63,18 +63,18 @@ export function LanguageScenes(params) {
       containerPage.innerHTML = `
       <button class="${styles.add_language_btn}" id="buttonLanguage">Add Language</button>
       <h1 class="${styles.title} ${styles.fontTitles}">Welcome to ${route.name} languages</h1>
-      <div class=${styles.containerEditor}>
-          <img src=${background} alt="background">
-      </div>
 
       <div class=${styles.contIcons}>
         ${languages.map((language,idx) => {
           return `
             <div class=${styles.iconContainer}>
-              <img src=${language.image} alt="languageIcon" class="${styles.icono} iconImages" id=${language.id}>
+              <figure>
+                <img src=${language.image} alt="languageIcon" class="${styles.icono} iconImages" id=${language.id}>
+              </figure>
               <p class="${styles.pLanguage} ${styles.fontTitles}">${language.name}</p>
-              
-              <img src=${remoteControl} class=${styles.remoteControl} alt="remote">
+              <figure>
+                <img src=${remoteControl} class=${styles.remoteControl} alt="remote">
+              </figure>
             </div>
           
           

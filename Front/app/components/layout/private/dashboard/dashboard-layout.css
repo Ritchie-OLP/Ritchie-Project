@@ -8,11 +8,13 @@
     width: 100%;
     height: fit-content;
     top: 0;
-    z-index: 2;
+    z-index: 1000;
 }
 
 .mainContent {
     display: flex;
+    background: url('https://i.imgur.com/EAlo0iK.png');
+    min-height: 100vh;
 }
 
 .mainElement {
@@ -27,7 +29,7 @@
 
 .sidebar {
     position: fixed;
-    z-index: 1;
+    z-index: 999;
     left: -135px;
     height: 100%;
     transition: all ease-in-out .4s;
