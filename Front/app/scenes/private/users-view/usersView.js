@@ -1,8 +1,6 @@
 import styles from './usersView.css';
-import background from '../../../assets/backgroundUsers.jpg'
 import fire from '../../../assets/fire-icon.png'
-import rocket from '../../../assets/rocket.gif';
-import goku from '../../../assets/goku.jpeg';
+import ninja from '../../../assets/images/goku-ninja.jpg';
 
 
 export function UserView() {
@@ -13,7 +11,7 @@ export function UserView() {
         <div class="${styles["content"]}">
             <div class="${styles["left-colum"]}">
                 <div class="${styles["left-colum-picture"]}">
-                    <img src="${goku}" alt="profile picture">
+                    <img src="${ninja}" alt="profile picture">
                 </div>
                 <div class="${styles["left-colum-info"]}">
                     <h2>${theUser.username}</h2>
@@ -21,10 +19,14 @@ export function UserView() {
                 </div>
             </div>
             <div class="${styles["center-colum"]}">
-                <h2>Hola ${theUser.username}, bienvenido a la vista de tu perfil</h2>
-                <p>Nombre de usuario: ${theUser.username}</p>
-                <p>Correo: ${theUser.email}</p>
-                <p>Fecha de creación del perfil: ${creationDate}</p>
+                <div class="${styles["center-colum-hello"]}">
+                    <h2>Hola ${theUser.username}, bienvenido a la vista de tu perfil</h2>
+                </div>
+                <div class="${styles["center-colum-info"]}">
+                    <p>Nombre de usuario: ${theUser.username}</p>
+                    <p>Correo: ${theUser.email}</p>
+                    <p>Fecha de creación del perfil: ${creationDate}</p>
+                </div>
             </div>
             <div class="${styles["right-colum"]}">
                 <div class="${styles["right-colum-icon"]}">

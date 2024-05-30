@@ -2,7 +2,7 @@ import styles from './consolecss.css';
 export function ConsoleCSS() {
     const pageContent = `
     <div class="${styles["container"]}">
-        <h2>Consola de HTML y CSS</h2>
+        <h2>Console HTML and CSS</h2>
             <div>
                 <button id="runHtmlCss">Run</button>
             </div>
@@ -11,7 +11,6 @@ export function ConsoleCSS() {
             <textarea id="cssOnly">h1 { background-color: white; }</textarea>
             <iframe id="iframeHtmlCss" sandbox="allow-scripts"></iframe>
         </div>
-        
     </div>
     `;
 

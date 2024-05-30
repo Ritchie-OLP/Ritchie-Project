@@ -3,7 +3,7 @@ import styles from './consolejs.css';
 export function ConsoleJS() {
     const pageContent = `
     <div class="${styles["container"]}">
-        <h2>Consola de JavaScript</h2>
+        <h2>Console JavaScript</h2>
         <label for="jsInput">Ingresa código JavaScript:</label>
         <button id=${"openConsoleBtn"}>Ejecutar</button>
         <div class="${styles["console-container"]}">

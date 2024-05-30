@@ -19,8 +19,10 @@
     margin: 0 auto;
 }
 
-h2, h3 {
-    color: #53afde;
+.container {
+    h2 {
+        color: #53afde;
+    }
 }
 
 button-container {

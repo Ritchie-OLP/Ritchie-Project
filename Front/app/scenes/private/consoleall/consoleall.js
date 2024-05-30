@@ -3,7 +3,7 @@ import styles from './consoleall.css';
 export function ConsoleAll() {
     const pageContent = `
         <div class="${styles["container"]}">
-            ${createConsoleSection('htmlCssJs', 'Consola de HTML, CSS y JavaScript', true, true, true)}
+            ${createConsoleSection('htmlCssJs', 'Console HTML, CSS and JavaScript', true, true, true)}
         </div>
     `;
 
