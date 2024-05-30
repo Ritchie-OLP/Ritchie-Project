@@ -2,52 +2,42 @@ import { navigateTo } from "../../../../Router";
 import { logOut } from "../../../../helpers";
 import { NavigationBar } from "../../../navigation-bar/navigation-bar";
 import { SidebarMenu } from "../../../sidebar-menu/sidebar-menu";
+import userIcon from "../../../../assets/images/user-icon.png";
 import styles from './dashboard-layout.css';
 const theUser = JSON.parse(localStorage.getItem('user'));
 
-export function DashboardLayout(pageContent, logic, footer, navbarData, sidebarData,) {
+export function DashboardLayout(pageContent, logic, footer, navbarData,) {
 
   // hace la peticion al backend.
 
   const root = document.getElementById('root');
 
-  sidebarData = [
-    { href: '/dashboard', name: 'Home' },
-    { href: '/dashboard/reports', name: 'Reports' },
-    { href: '/dashboard/settings', name: 'Settings' },
-    { href: '/dashboard/users', name: 'Users' },
-    { href: '/dashboard/products', name: 'Products' },
-    { href: '/dashboard/forum', name: 'Forum' },
-    { href: '/dashboard/show-cases', name: 'Showcases' },
-    { href: '/dashboard/challenges', name: 'Challenges'},
-  ];
-
   navbarData = {
-    user: theUser.username,
-    userImage: 'https://randomuser.me/api/portraits/men/75.jpg',
+    user: JSON.parse(localStorage.getItem('user')).username,
+    userImage: userIcon,
   };
 
+  const sidebar = SidebarMenu();
+  const navbar = NavigationBar(navbarData);
+
   root.innerHTML = `
-  <div class="${styles.container}">
-    <div class="${styles.sidebar}">
-      ${SidebarMenu(sidebarData)}
-    </div>
+  <div id="bigContainer" class="${styles.container}">
     <div class="${styles.navbar}">
-      ${NavigationBar(navbarData)}
+      ${navbar.pageContent}
     </div>
-    <div class="${styles.main}">
-      ${pageContent}
+    <div class="${styles.mainContent}">
+      <div id="sidebar" class="${styles.sidebar} ${styles.mainElement}">
+        ${sidebar.pageContent}
+      </div>
+      <div class="${styles.main} ${styles.mainElement}">
+        ${pageContent}
+      </div>
     </div>
   </div>
   `;
 
+  sidebar.logic();
+  navbar.logic();
   logic();
-
-  sidebarData.forEach(({ href, icon, label }) => {
-    document.getElementById(href).addEventListener('click', () => {
-      navigateTo(href);
-    });
-  });
-
-  document.getElementById('logout').addEventListener('click', logOut)
+  document.getElementById('logout').addEventListener('click', logOut);
 }

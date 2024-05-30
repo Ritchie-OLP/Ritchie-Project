@@ -1,6 +1,6 @@
 import styles from './language.css';
-import background from '../../../../../assets/images/background_modules.jpg';
-import remoteControl from "../../../../../assets/images/control-remoto.png"
+import background from '../../../../../assets/images/fondo.jpg';
+import remoteControl from "../../../../../assets/images/control-remoto.png";
 import { navigateTo } from '../../../../../Router';
 
 
@@ -51,7 +51,7 @@ export function LanguageScenes(params) {
         ${languages.map((language,idx) => {
           return `
             <div class=${styles.iconContainer}>
-              <img src=${language.image} alt="languageIcon" class=${styles.icono} id=${language.id}>
+              <img src=${language.image} alt="languageIcon" class="${styles.icono} iconImages" id=${language.id}>
               <p class="${styles.pLanguage} ${styles.fontTitles}">${language.name}</p>
               
               <img src=${remoteControl} class=${styles.remoteControl} alt="remote">
@@ -63,7 +63,7 @@ export function LanguageScenes(params) {
       </div>
       
       `
-        document.querySelectorAll(`.${styles.icono}`).forEach(
+        document.querySelectorAll(`.iconImages`).forEach(
           image => {
             image.addEventListener('click', (e) => {
               navigateTo(`/dashboard/routes/languages/module?id=${e.target.id}`)

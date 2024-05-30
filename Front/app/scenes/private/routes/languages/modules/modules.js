@@ -1,9 +1,10 @@
 import styles from './modules.css';
-import background from '../../../../../assets/images/background_modules.jpg';
+import background from '../../../../../assets/images/fondo.jpg';
 import { navigateTo } from '../../../../../Router';
 
 export function Modules(params) {
     const languageId = params.get('id');
+    console.log(languageId);
 
     const pageContent = `
     <div class=${styles.newPage} id="container"></div>
@@ -53,8 +54,8 @@ export function Modules(params) {
                 <div class="${styles.contModules}" id="releaseArea">
                     ${modules.map((module, idx) => {
                         return `
-                        <div id="module${idx}" class="${styles.contIconModules} ${styles["mod" + (idx + 1)]}">
-                            <img src=${module.image} class="${styles.iconMod} ${styles["iconMod" + (idx + 1)]}" id=${module.id} alt="icon ${idx + 1}" data-description="${module.name}">
+                        <div id="module${idx}" class="${styles.contIconModules} ${styles["iconMod" + (idx + 1)]}">
+                            <img src=${module.image} class="${styles.iconMod}" id=${module.id} alt="icon ${idx + 1}" data-description="${module.name}">
                         </div>
                         `;
                     }).join('')}
