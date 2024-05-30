@@ -119,3 +119,94 @@ body{
     from{transform: rotate3d(1,0,0,0deg);}
     to{transform: rotate3d(1,0,0,360deg);}
 }
+
+/* Estilos para el modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+}
+
+.modal-content h2 {
+    color: #000;
+}
+
+.modal-content label {
+    display: block;
+    margin-top: 10px;
+    color: #000;
+}
+
+.modal-content input {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btnContainer button {
+    background-color: #252547;
+    color: #fff;
+    width: auto;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.btnContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilos para el boton de abrir el modal */
+.add_language_btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    background-color: #252547;
+    color: #fff; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    z-index: 1;
+}
+
+.add_language_btn:hover {
+    background-color: #3b3b78;
+}

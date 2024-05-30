@@ -13,12 +13,12 @@ export function ChallengeScene() {
             <h2>Retos</h2>
         </div>
         <div class="${styles.filtros}">
-            <h2>Filtros</h2>
+            <h2>Filters</h2>
+            <br>
             <div>
-                <h3>Tipos de datos</h3>
-                <label><input type="checkbox" value="HTML"> HTML</label>
-                <label><input type="checkbox" value="CSS"> CSS</label>
-                <label><input type="checkbox" value="JavaScript"> JavaScript</label>
+                <h3>Challenges</h3>
+                <label><input type="checkbox" id="checkboxCompleted" value="SI"> Completado</label>
+        <label><input type="checkbox" id="checkboxNoCompleted" value="NO"> No completado</label>
             </div>
         </div>
     </div>
@@ -26,25 +26,29 @@ export function ChallengeScene() {
         <div class="${styles['modal-content']}">
             <span class="${styles.close}">&times;</span>
             <h2>Propuesta reto</h2>
-            <label for="name">Nombre</label>
-            <input type="text" id="name" name="name" placeholder="John Doe">
 
-            <label for="email">Correo</label>
-            <input type="email" id="email" name="email" placeholder="johndoe@example.com">
+            <label for="nombreReto">Nombre del reto</label>
+            <input type="text" id="nombreReto" name="nombreReto" placeholder="Lorem ipsum dolor sit amet, con">
 
-            <label for="finalidad">Finalidad del reto</label>
-            <textarea id="finalidad" name="finalidad">Con este reto se busca Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec sem in justo. Nullam in felis eu.</textarea>
+            <label for="descripcionReto">Contenido del reto(Reto y teoria relacionada))</label>
+            <textarea id="descripcionReto" name="descripcionReto" placeholder="Describa el reto y la teoría necesaria..."></textarea>
 
-            <label for="tipo-reto">Tipo de reto</label>
-            <input type="text" id="tipo-reto" name="tipo-reto" placeholder="CSS, HTML, JavaScript" class="full-width">
+            <label for="ruta">Asignar ruta</label>
+            <select id="ruta" name="ruta">
+                <option value="" disabled selected>Lista de rutas disponibles</option>
+            </select>
 
-            <label for="reto">Reto</label>
-            <textarea id="reto" name="reto">Aqui va la informacion del reto Ejemplo: En este reto vas a utilizar toLowercase, un metodo de strings</textarea>
+            <label for="lenguaje">Asignar lenguaje</label>
+            <select id="lenguaje" name="lenguaje">
+                <option value="" disabled selected>Lista de lenguajes disponibles para la ruta elegida</option>
+            </select>
 
-            <label for="resuelto">Reto resuelto</label>
-            <textarea id="resuelto" name="resuelto">Llenar este espacio con la informacion del reto resuelto</textarea>
+            <label for="modulo">Asignar módulo</label>
+            <select id="modulo" name="modulo">
+                <option value="" disabled selected>Lista de módulos disponibles para el lenguaje elegido</option>
+            </select>
 
-            <button id="submitBtn">Enviar información</button>
+            <button type="submit" id="submitBtn">Enviar información</button>
         </div>
     </div>
     <div class="${styles.loader}" id="loader"></div>
@@ -55,13 +59,21 @@ export function ChallengeScene() {
         const span = modal.querySelector(`.${styles.close}`);
         const btn = document.getElementById("proponerRetoBtn");
         const challengesContainer = document.getElementById("challengesContainer");
+        const submitBtn = document.getElementById('submitBtn')
+        const user_id = JSON.parse(localStorage.getItem('user')).id
+
+        // Select elements
+        const rutaSelect = document.getElementById('ruta');
+        const lenguajeSelect = document.getElementById('lenguaje');
+        const moduloSelect = document.getElementById('modulo');
     
         // Lógica para abrir y cerrar el modal
         btn.onclick = function (event) {
             event.preventDefault();
             modal.style.display = "block";
+            fetchRoutes();
         };
-    
+        
         span.onclick = function () {
             modal.style.display = "none";
         };
@@ -73,66 +85,178 @@ export function ChallengeScene() {
         };
     
         // Lógica para llamar al API y mostrar los desafíos
-        const response = await fetch('http://localhost:3000/retos');
-        const challenges = await response.json();
-    
-        challenges.forEach(challenge => {
-            const { "Nombre reto": nombreReto, Reto: reto, "estado del reto": estado, "tipo de reto": tipo } = challenge;
-            const challengeElement = document.createElement('div');
-            challengeElement.classList.add(styles.reto);
-        
-            challengeElement.innerHTML = `
-                <span>Nombre reto: ${nombreReto}</span>
-                <span>Estado: ${estado ? `<span class="${styles.completado}">Completado</span>` : '<span>No completado</span>'}</span>
-                <span>Tipo de reto: ${tipo}</span>
-                <p>Reto: ${reto}</p>
-            `;
-            challengesContainer.appendChild(challengeElement);
-        });      
-
-        const checkboxHTML = document.querySelector('input[value="HTML"]');
-        const checkboxJavaScript = document.querySelector('input[value="JavaScript"]');
-        const checkboxCSS = document.querySelector('input[value="CSS"]');
-
-        const filterChallenges = () => {
-            const checkboxes = {
-                HTML: checkboxHTML.checked,
-                CSS: checkboxCSS.checked, 
-                JavaScript: checkboxJavaScript.checked
+        const response = await fetch('http://localhost:4000/api/challenges/getallchallenges', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
+        });
 
+        const challenges = await response.json();
+
+        // Función para renderizar desafíos
+        const renderChallenges = (filteredChallenges) => {
             challengesContainer.innerHTML = ''
-
-            challenges.forEach(challenges => {
-                const {"Nombre reto": nombreReto, Reto: reto, "estado del reto": estado, "tipo de reto": tipo } = challenges
-
-                if ((checkboxes.HTML && tipo === 'html') ||
-                (checkboxes.CSS && tipo === 'css') ||
-                (checkboxes.JavaScript && tipo === 'js')) {
-                    const challengeElement = document.createElement('div')
-                    challengeElement.classList.add(styles.reto)
-
-                    challengeElement.innerHTML = `
-                    <span>Nombre reto: ${nombreReto}</span>
-                    <span>Estado: ${estado ? `<span class="${styles.completado}">Completado</span>` : '<span>No completado</span>'}</span>
-                    <span>Tipo de reto: ${tipo}</span>
-                    <p>Reto: ${reto}</p>
-                `;
-                challengesContainer.appendChild(challengeElement);
-                }
+            filteredChallenges.forEach((challenge) => {
+                challengesContainer.innerHTML += `
+                <div class="${styles.reto}">
+                    <span class="${styles['name-challenge']}">Nombre del reto: ${challenge.name}</span>
+                    <p>Reto: ${challenge.content}</p>
+                    <span class="${challenge.completed ? styles.completado : styles['no-completado']}">${challenge.completed ? 'Completado' : 'No completado'}</span>
+                </div>
+                `
             })
         }
 
-        checkboxHTML.addEventListener('change', filterChallenges);
-    checkboxCSS.addEventListener('change', filterChallenges);
-    checkboxJavaScript.addEventListener('change', filterChallenges);
+        renderChallenges(challenges)
 
-    filterChallenges();
+        const checkboxCompleted = document.getElementById('checkboxCompleted');
+        const checkboxNoCompleted = document.getElementById('checkboxNoCompleted');
 
+        const filterChallenges = () => {
+            const showCompleted = checkboxCompleted.checked
+            const showNoCompleted = checkboxNoCompleted.checked
+
+            const filteredChallenges = challenges.filter(challenge => {
+                if (showCompleted && challenge.completed) {
+                    return true
+                }
+                if (showNoCompleted && !challenge.completed) {
+                    return true
+                }
+                return false
+            })
+
+            renderChallenges(filteredChallenges)
+        }
+
+        checkboxCompleted.addEventListener('change', filterChallenges)
+        checkboxNoCompleted.addEventListener('change', filterChallenges)
+
+        filterChallenges()
+
+        // Function to fetch and render routes
+        const fetchRoutes = async () => {
+            const response = await fetch('http://localhost:4000/api/routes/getallroutes', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+
+            const routes = await response.json();
+            rutaSelect.innerHTML = '<option value="" disabled selected>Lista de rutas disponibles</option>';
+            routes.forEach(route => {
+                const option = document.createElement('option');
+                option.value = route.id;
+                option.text = route.name;
+                rutaSelect.appendChild(option);
+            });
+        }
+
+        // Function to fetch and render languages based on selected route
+        const fetchLanguages = async (routeId) => {
+            const response = await fetch(`http://localhost:4000/api/languages/route/${routeId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+
+            const languages = await response.json();
+            lenguajeSelect.innerHTML = '<option value="" disabled selected>Lista de lenguajes disponibles para la ruta elegida</option>';
+            languages.forEach(language => {
+                const option = document.createElement('option');
+                option.value = language.id;
+                option.text = language.name;
+                lenguajeSelect.appendChild(option);
+            });
+        }
+
+        // Function to fetch and render modules based on selected language
+        const fetchModules = async (languageId) => {
+            const response = await fetch(`http://localhost:4000/api/modules/language/${languageId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+
+            const modules = await response.json();
+            moduloSelect.innerHTML = '<option value="" disabled selected>Lista de módulos disponibles para el lenguaje elegido</option>';
+            modules.forEach(module => {
+                const option = document.createElement('option');
+                option.value = module.id;
+                option.text = module.name;
+                moduloSelect.appendChild(option);
+            });
+        }
+
+        // Event listeners for select elements
+        rutaSelect.addEventListener('change', () => {
+            const routeId = rutaSelect.value;
+            fetchLanguages(routeId);
+        });
+
+        lenguajeSelect.addEventListener('change', () => {
+            const languageId = lenguajeSelect.value;
+            fetchModules(languageId);
+        });
+
+        submitBtn.onclick = async function (event) {
+            event.preventDefault()
+        
+            const nameChallenge = document.getElementById('nombreReto').value.trim()
+            const contentChallenge = document.getElementById('descripcionReto').value.trim()
+            const route = Boolean(document.getElementById('ruta').value) ? document.getElementById('ruta').value : null
+            const language = Boolean(document.getElementById('lenguaje').value) ? document.getElementById('lenguaje').value : null 
+            const moduleId = Boolean(document.getElementById('modulo').value) ? document.getElementById('modulo').value : null
+            console.log(`name:${nameChallenge} Content: ${contentChallenge} route: ${route} language: ${language} module: ${moduleId} userId: ${user_id}`)
+        
+            if (!nameChallenge || !contentChallenge) {
+                alert('Por favor, complete todos los campos.')
+                return
+            }
+            
+            const newChallenge = {
+                name: nameChallenge,
+                userId: user_id,
+                content: contentChallenge,
+                routeId: route,
+                languageId: language,
+                moduleId: moduleId
+            }
+        
+            try {
+                const response = await fetch('http://localhost:4000/api/challenges/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify(newChallenge)
+                })
+        
+                if (response.ok) {
+                    alert('Reto enviado con éxito')
+                    modal.style.display = "none"
+                } else {
+                    const errorData = await response.json();
+                    alert(`Error al crear el reto: ${errorData.message}`);
+                }
+            } catch (error) {
+                console.error('Error al enviar el reto:', error)
+                alert('Error al enviar el reto')
+            }
+        }
     }
     
     return {
         pageContent,
         logic
-    };
+    }
 }

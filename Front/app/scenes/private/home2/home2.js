@@ -12,12 +12,16 @@ export function Home2Scene(){
         Recusandae minus modi molestias? Nobis exercitationem ducimus, ipsam, molestias ipsum, et beatae cumque quis nostrum quibusdam illum repudiandae maxime aperiam culpa necessitatibus? Iure, delectus. Eos velit repudiandae maiores saepe inventore?
         </p>
     </div>
-    
+
     `
-
+   
+    const logic = async () => {
+        
+    }
+    return {
+        pageContent,
+        logic
+    }
 }
-
-
-
 
 

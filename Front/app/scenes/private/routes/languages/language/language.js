@@ -8,7 +8,27 @@ export function LanguageScenes(params) {
 
     const routeId = params.get('id')
   
-    const pageContent = `<div class=${styles.container} id="container" ></div>`
+    const pageContent = `
+    <div class=${styles.container} id="container" ></div>
+
+    <!-- Modal para Crear Lenguaje -->
+
+    <div id="modalLanguage" class="${styles.modal}">
+        <div class="${styles['modal-content']}">
+            <span class="${styles.close}">&times;</span>
+            <h2>Crear Lenguaje</h2>
+            <form id="createLanguageForm">
+                <label for="nombreLenguaje">Nombre del lenguaje</label>
+                <input type="text" id="nameLanguage" name="name" placeholder="Nombre del lenguaje">
+                <label for="lenguajeImage">Img</label>
+                <input type="text" id="languageImage" name="image" placeholder="URL de la imagen">
+                <div class="${styles.btnContainer}"> <!-- Nuevo contenedor para el botón -->
+                  <button type="submit" id="submitLanguageBtn">Crear Lenguaje</button>
+                 </div>
+            </form>
+        </div>
+    </div>
+    `
   
     let logic = async () => {
       const resp = await fetch(`http://localhost:4000/api/languages/route/${routeId}`, {
@@ -18,7 +38,6 @@ export function LanguageScenes(params) {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
       })//Cierre fetch
-
 
       const respRoutes = await fetch(`http://localhost:4000/api/routes/${routeId}`, {
         method: 'GET',
@@ -42,6 +61,7 @@ export function LanguageScenes(params) {
 
       
       containerPage.innerHTML = `
+      <button class="${styles.add_language_btn}" id="buttonLanguage">Add Language</button>
       <h1 class="${styles.title} ${styles.fontTitles}">Welcome to ${route.name} languages</h1>
       <div class=${styles.containerEditor}>
           <img src=${background} alt="background">
@@ -71,6 +91,67 @@ export function LanguageScenes(params) {
           }
         )
 
+      const modalLanguage = document.getElementById("modalLanguage")
+      const btnCreateLanguage = document.getElementById("buttonLanguage")
+      const span = modalLanguage.querySelector(`.${styles.close}`)
+      const submitBtnCrearLenguage = document.getElementById('submitLanguageBtn')
+
+      btnCreateLanguage.onclick = function (event) {
+        event.preventDefault()
+        modalLanguage.style.display = 'block'
+      }
+
+      span.onclick = function () {
+        modalLanguage.style.display = 'none'
+      }
+
+      window.onclick = function (event) {
+        if (event.target === modalLanguage) {
+          modalLanguage.style.display = 'none'
+        }
+      }
+
+// Creacion de un nuevo lenguaje
+      submitBtnCrearLenguage.onclick = async function (event) {
+        event.preventDefault()
+
+        const nameLanguage = document.getElementById('nameLanguage').value.trim()
+        const imageLanguage = document.getElementById('languageImage').value.trim()
+
+        if (!nameLanguage || !imageLanguage) {
+          alert('Por favor, complete todos los campos.')
+          return
+      }
+
+        const newLanguage = {
+          name: nameLanguage,
+          image: imageLanguage,
+          routeId: routeId
+        }
+
+        try {
+          const response = await fetch('http://localhost:4000/api/languages/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify(newLanguage)
+          })
+  
+          if(response.ok) {
+            alert('Lenguaje creado con exito')
+            modalLanguage.style.display = 'none'
+          } else {
+            const errorData = await response.json();
+            alert(`Error al crear el lenguaje: ${errorData.message}`);
+          }
+        } catch (error) {
+          console.error('Error al crear el lenguaje', error)
+          alert('Error al crear lenguaje')
+        }
+      }
+
     }//Cierre de la logica
 
  
@@ -81,10 +162,3 @@ export function LanguageScenes(params) {
 
 
   }//Cierre de la funcion LanguageScenes
-
-
-
-
-
-
-  
