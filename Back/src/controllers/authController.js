@@ -49,7 +49,7 @@ exports.login = async (req, res) => {
       expiresIn: '12h',
     });
 
-    res.json({ token, user: { id: user.id, username: user.username, email: user.email, points: user.points } });
+    res.json({ token, user: { id: user.id, username: user.username, email: user.email, points: user.points, creationDate: user.creation_date } });
   } catch (err) {
     console.error('Error en login:', err);
     res.status(500).json({ message: 'Error en el servidor' });

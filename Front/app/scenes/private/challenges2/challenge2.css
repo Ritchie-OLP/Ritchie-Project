@@ -1,32 +1,343 @@
+@import url('https://fonts.googleapis.com/css2?family=Freeman&family=Jaro:opsz@6..72&family=Poetsen+One&display=swap');
+
 .newPage{
     position: relative;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     transition: clip-path 1s ease-in-out;
     clip-path: circle(0% at center);
     display: flex;
-    /* overflow: hidden; */
+    flex-direction: column;
+    gap: 5vh;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
-.emptyDiv,.imageBackground, .imageBackground img{
+
+.generalChallenges {
+    margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.imageBackground, .imageBackground img{
     width: 100%;
     height: 100%;
 
 }
 
-.emptyDiv{
-    position: absolute;
-    background-color: rgba(22, 22, 22,0.5);
-
-    
-}
 
 .imageBackground{
     z-index: -1;
     position: absolute;
 }
 
+.imageBackground img{
+    object-fit: fill;
+}
+
+.fontTitles{
+    text-transform: uppercase;
+    font-family: "Workbench", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+      "BLED" 0,
+      "SCAN" 0;
+    color: rgb(106, 198, 196);
+
+    
+}
+
 .title{
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: 5vw;
+    border: inset 5px rgb(106, 198, 196);
+    padding: 2%;
+    text-align: center;
+    margin: 40px auto 0;
+    height: 10%;
+}
+
+
+.containerChallenge {   
+    position: relative;
+    width: 500px;
+    height: 500px;
+}
+
+.containerCards {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+   
+}
+
+.containerCards > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    transition: all ease-in-out .4s;
+    border-radius: 20%;
+}
+
+.containerCards > div {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(67, 121, 198,0.4);
+    border-radius: 20%;
+    z-index: -1;
+    transition: all ease-in-out .4s;
+}
+
+.containerCards > div > p{
+    padding: 25%;
+    color: bisque;
+    line-height: 30px;
+    font-size: 2rem;
+}
+
+.containerCards:hover > .ninjaImages {
+    transform: translate(-50%);
+    border-radius: 20% 0% 0% 20%;
+    box-shadow: -6px 14px 26px 13px rgba(171,136,209,1);
+    
+}
+
+.containerCards:hover > div {
+    transform: translate(50%);
+    color: black;
+    border-radius: 0% 20% 20% 0%;
+    box-shadow: 6px 14px 26px 13px rgba(171,136,209,1);
+}
+
+.modal1,.modal2,.modal3{
+    width: 100%;
+    position: absolute;
+    transition: clip-path 1s ease-in-out;
+    clip-path: circle(0% at center);
+
+}
+.modal1{
+    height: 100%;
+}
+.modal2{
+    height: 70%;
+    top: 0%;
+
+}
+
+.modal3{
+    height: 100vh;
+    bottom: 0%;
+}
+.buttonClose{
+    position: fixed;
+    position: absolute;
+    right: 0%;
+    top: 0%;
+    width: 5VW;
+    height: 5vh;
+    background-color: rgb(68, 18, 18);
+    border: none;
+    font-size: 2rem;
+    color: rgb(204, 181, 90);
+    border-radius: 5%;
+    z-index: 1;
+ 
+
+}
+/* 
+.hidden{
+ display: none;
+
+} */
+
+
+.modal1 {
+    background: rgb(25,38,99);
+    background: radial-gradient(circle, rgb(17, 27, 69) 0%, rgba(97, 161, 201, 0.978) 100%);
+}
+
+.containerModal1{
+    width: 100%;
+    height: 100%;
+    background-image: url("https://i.imgur.com/EXYjAIC.png");
+    background-size: 100% 100%; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.containerModal1 p{
+    width: 70%;
+    padding: 5%;
+    font-size: 1.2rem;
+    line-height: 3.5vh;
+    text-align: justify;
+
+
+}
+
+/* @media (max-width: 900px){
+
+    .containerModal1 p{
+        font-size: 1em;
+        color: aquamarine;
+    }
+} */
+
+
+
+.modal2{
+    background: black;
+
+}
+
+.containerModal2{
+    width: 100%;
+    height: 100%;
+    background-image: url("https://i.imgur.com/Mk6EzAw.jpeg");
+    background-size: 100% 100%; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    position: relative;
+
+}
+
+.containerVideo{
+    position: absolute;
+    top: 10%;
+    left: 22.5%;
+    width: 55%;
+    height: 55%;
+
+}
+.containerVideo iframe{
+
+    width: 100%;
+    height: 100%;
+}
+
+.containerModal3{
+    margin: auto;
+    display: flex;
+    align-items: end;
+    width: 100%;
+    height: 100%;
+}
+
+.modal3{
+    /* display: flex;
+    flex-direction: column;
+    justify-content: end; */
+    background-image: linear-gradient(black,rgb(50, 50, 62),black);
+}
+
+.colum, .colum2{
+    border: 2px solid black;
+    width: 50%;
+    height: 100%;
+
+}
+
+.colum2{
+    background-image:url("https://i.imgur.com/WuhH1AK.jpeg");
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hangMan{
+    height: 60vh;
+}
+
+.hangMan img{
+    height: 100%;
+    object-fit: contain;
+}
+
+.colum{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3.5vh;
+    background-image: url("https://i.imgur.com/G1iV322.png");
+    background-size: 100% 100%;
+    
+}
+
+.colum h2{
+    background-color: rgb(197, 201, 154);  
+    font-size: 2vw;
+    padding: 2%;
+    border-radius: 5%; 
+    font-family: "Freeman", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.pHiddenWord{
+    display: flex;
+    font-size: 5vw;
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
     color: antiquewhite;
+    border-radius: 25%;
+}
+
+.pLetter{
+    color: rgb(5, 5, 5);
+    font-family: "Jaro", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    padding: 2%;
+}
 
 
+
+.boxABC{
+
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 0.5vw;
+
+}
+
+
+.containerLetter{
+    background-color: antiquewhite;
+    border-radius: 25%;
+    width: 3vw;
+    height: 3vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.containerLetter:hover{
+    box-shadow: 5px 5px 5px 5px bisque;
+}
+
+.containerLetter p{
+
+    font-size: 1.5em;
 }

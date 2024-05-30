@@ -2,49 +2,46 @@ import styles from './consolejs.css';
 
 export function ConsoleJS() {
     const pageContent = `
-        <div class="${styles["container"]}">
-            ${createConsoleSection('htmlCssJs', 'Consola de HTML, CSS y JavaScript', true, true, true)}
+    <div class="${styles["container"]}">
+        <h2>Console JavaScript</h2>
+        <label for="jsInput">Ingresa código JavaScript:</label>
+        <button id=${"openConsoleBtn"}>Ejecutar</button>
+        <div class="${styles["console-container"]}">
+            <div class="${styles["input-container"]}">
+                <h3>Ingresa código JavaScript:</h3>
+                <textarea id="jsInput">console.log('Hello, World!');</textarea>
+            </div>
+            <div id="outputContainer" class="${styles["output-container"]}">
+                <div class="${styles["title"]}">
+                    <h3>Resultados:</h3>
+                </div>
+                <div class="${styles["output"]}">
+                    <input type="text" id="output" class="${styles["output-text"]}" readonly/>
+                </div>
+                
+            </div>
         </div>
-    `;
-
+    </div>
+    `
     const logic = () => {
-        setupConsole('htmlCssJs');
-    };
-
+        function espacioEjecucion (cadenaTexto){
+            try {
+                const result = eval(cadenaTexto);
+                document.getElementById("output").value = result;
+            } catch (error) {
+                document.getElementById("output").value = 'Error en la expresión';
+                return 'Error en la expresión';
+            }
+        }
+        function runCode() {
+            var input = document.getElementById("jsInput");
+            const inputReal = input.value;
+            espacioEjecucion(inputReal);   
+        }
+        document.getElementById('openConsoleBtn').addEventListener('click', runCode);
+    }   
     return {
         pageContent,
         logic
-    };
-}
-
-function createConsoleSection(id, title, includeHtml, includeCss, includeJs) {
-    return `
-        <div class="${styles["console-section"]}">
-            <h2>${title}</h2>
-            <button id="run${capitalize(id)}">Run</button>
-            ${includeHtml ? `<textarea id="${id}Html"><span id="span">a span</span></textarea>` : ''}
-            ${includeCss ? `<textarea id="${id}Css">span { color: green; }</textarea>` : ''}
-            ${includeJs ? `<textarea id="${id}Js">span.onclick = () => span.style.color = 'yellow';</textarea>` : ''}
-            <iframe id="iframe${capitalize(id)}" sandbox="allow-scripts"></iframe>
-        </div>
-    `;
-}
-
-function setupConsole(id) {
-    document.getElementById(`run${capitalize(id)}`).addEventListener('click', () => {
-        const htmlContent = document.getElementById(`${id}Html`)?.value || '';
-        const cssContent = document.getElementById(`${id}Css`)?.value || '';
-        const jsContent = document.getElementById(`${id}Js`)?.value || '';
-
-        const fullHTML = `
-            <!doctype html><html>
-                <head><style>${cssContent}</style></head>
-                <body>${htmlContent}<script>${jsContent}<\/script></body>
-            </html>`;
-        document.getElementById(`iframe${capitalize(id)}`).src = 'data:text/html,' + encodeURIComponent(fullHTML);
-    });
-}
-
-function capitalize(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
+    }
 }

@@ -1,7 +1,7 @@
 import styles from './home.css';
 import { ReportScene } from '../reports'
 import { navigateTo } from '../../../Router';
-import background from '../../../assets/images/background_modules.jpg';
+import background from '../../../assets/images/fondo.jpg';
 
 export function HomeScene() {
 

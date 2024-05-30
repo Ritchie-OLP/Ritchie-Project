@@ -1,85 +1,63 @@
-:root {
-    --inner-radius: 16px;
-    --padding: 15px;
-    --outer-radius: calc(var(--inner-radius) + var(--padding));
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-.container {
-    background-color: #160528;
-    color: #dd7d5b;
-    padding: 20px;
-    max-width: 100%;
+.container{
     height: 100%;
-    margin: 0 auto;
-    overflow: hidden;
-}
-
-h2 {
-    color: #53afde;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.button-container {
-    margin-bottom: 20px;
-}
-
-button {
-    background-color: #381b77;
-    color: #ffffff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover {
-    background-color: #7748cd;
-    color:#dd7d5b;
-}
-
-
-.content {
+    width: 100%;
+    padding: 15px;
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    flex-direction: column;
+}
+
+h2{
+    font-size: 3rem;
+}
+
+label{
+    color: white;
+}
+
+button{
+    margin-top: 10px;
+}
+
+.console-container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
     width: 100%;
     height: 100%;
-    margin: 0 auto;
-    overflow: hidden;
-}
-.iframe-container{
-    width: 48%;
-    height: 100%;
-    flex-grow: 1;
 }
 
-.textareas {
-    width: 48%;
-    height: 100%;
-    flex-grow: 1;
+div.input-container{
+    grid-column: 1;
 }
 
-textarea {
+textarea{
+    resize: none;
+    overflow-y: auto;
+}
+
+div.output-container{
+    grid-column: 2;
+}
+
+div.output{
     height: 100%;
-    width: 100%;   
-    padding: 10px;
-    border: 1px solid #7748cd;
-    border-radius: 4px;
     background-color: #160528;
-    color: #dd7d5b;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 14px;
-}
-
-iframe {
+    padding: 10px;
+    margin: 10px 0;
     border: 1px solid #381b77;
     border-radius: 4px;
+}
+
+input{
+    color: #dd7d5b;
+    background-color: #160528;
+    border: none;
+}
+
+.output-text:focus{
+    outline: none;
+}
+
+.output-text:hover {
+    background-color: #160528;
 }

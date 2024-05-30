@@ -1,4 +1,4 @@
-const { findById, update, delete: deleteUser, getAll } = require("../models/userModel");
+const { findById, update, delete: deleteUser, getAll, updatePoints } = require("../models/userModel");
 
 exports.getAll = async (req, res) => {
     try {
@@ -31,9 +31,9 @@ exports.update = async (req, res) => {
 
         // Verificar si el usuario existe
         const user = await findById(id);
-        if (!user) {
-            return res.status(400).json({ message: 'Ese Usuario no existe' });
-        }
+        // if (!user) {
+        //     return res.status(400).json({ message: 'Ese Usuario no existe' });
+        // }
 
         // Encriptar contraseña
         const salt = await bcrypt.genSalt(10);
@@ -65,6 +65,19 @@ exports.delete = async (req, res) => {
         res.status(200).json({ message: 'Usuario eliminado exitosamente' });
     } catch (err) {
         console.error('Error en delete:', err);
+        res.status(500).json({ message: 'Error en el servidor' });
+    }
+}
+
+exports.updatePoints = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { points } = req.body;
+        const updated = await updatePoints(id, points);
+
+        res.status(200).json({ message: 'Usuario actualizado exitosamente', user: updated });
+    } catch (err) {
+        console.error('Error en update:', err);
         res.status(500).json({ message: 'Error en el servidor' });
     }
 }
