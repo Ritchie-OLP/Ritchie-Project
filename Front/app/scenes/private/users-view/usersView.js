@@ -15,17 +15,17 @@ export function UserView() {
                 </div>
                 <div class="${styles["left-colum-info"]}">
                     <h2>${theUser.username}</h2>
-                    <h3>Tu usuario</h3>
+                    <h3>Your User</h3>
                 </div>
             </div>
             <div class="${styles["center-colum"]}">
                 <div class="${styles["center-colum-hello"]}">
-                    <h2>Hola ${theUser.username}, bienvenido a la vista de tu perfil</h2>
+                    <h2>Hello ${theUser.username}, Welcome To Your Profile</h2>
                 </div>
                 <div class="${styles["center-colum-info"]}">
-                    <p>Nombre de usuario: ${theUser.username}</p>
-                    <p>Correo: ${theUser.email}</p>
-                    <p>Fecha de creación del perfil: ${creationDate}</p>
+                    <p>User Name: ${theUser.username}</p>
+                    <p>Email: ${theUser.email}</p>
+                    <p>Profile Creation Data: ${creationDate}</p>
                 </div>
             </div>
             <div class="${styles["right-colum"]}">
@@ -33,7 +33,7 @@ export function UserView() {
                     <img src="${fire}" alt="fire icon"/>
                 </div>
                 <div class="${styles["info-points"]}">
-                    <h2>Tus puntos</h2>
+                    <h2>Your Points</h2>
                     <p>${theUser.points}</p>
                 </div>
             </div>

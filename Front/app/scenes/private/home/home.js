@@ -6,10 +6,6 @@ import background from '../../../assets/images/fondo.jpg';
 export function HomeScene() {
 
 
-  const footer = `
-  <footer><p>All rights reserved.</p></footer>
-  `;
-
   const pageContent = `
   <div class="${styles.home_elements} ${styles.hidden}" id="home_container">
   <button class="${styles.add_route_btn}" id="buttonRoute">Add route</button>
@@ -48,7 +44,7 @@ export function HomeScene() {
           </form>
         </div>
     </div>
-    ${footer}
+   
   </div>
   <div class="${styles.loader}" id="loader">
   </div>

@@ -25,7 +25,7 @@ export function Footer () {
         
         <!-- Partners Section -->
         <div class="${styles["footer-partners"]}">
-            <p class="${styles["footer-partners-title"]}">Socios:</p>
+            <p class="${styles["footer-partners-title"]}">Partners:</p>
             <a href="https://riwi.io/" target="_blank" class="${styles["footer-partners-link"]}">
             <img src="${riwi}" alt="RIWI" class="${styles["footer-partners-logo"]}">
             </a>
@@ -38,10 +38,10 @@ export function Footer () {
                 <a href="/challenges" class="${styles["footer-nav-link"]}">Challenges</a>
             </li>
             <li class="${styles["footer-nav-item"]}">
-                <a href="/learning-paths" class="${styles["footer-nav-link"]}">Rutas de Aprendizaje</a>
+                <a href="/learning-paths" class="${styles["footer-nav-link"]}">Learning Routes</a>
             </li>
             <li class="${styles["footer-nav-item"]}">
-                <a href="/games" class="${styles["footer-nav-link"]}">Juegos</a>
+                <a href="/games" class="${styles["footer-nav-link"]}">Games</a>
             </li>
             </ul>
         </div>

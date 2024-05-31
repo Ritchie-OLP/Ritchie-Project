@@ -72,11 +72,8 @@ export function ChallengeScene2(params) {
         const modal2 = document.createElement('DIV')
         const modal3 = document.createElement('DIV')
         modal1.classList.add(styles.modal1)
-        modal1.classList.add(styles.hidden)
         modal2.classList.add(styles.modal2)
-        modal2.classList.add(styles.hidden)
         modal3.classList.add(styles.modal3)
-        modal3.classList.add(styles.hidden)
 
         containerPage.append(modal1,modal2,modal3)
 

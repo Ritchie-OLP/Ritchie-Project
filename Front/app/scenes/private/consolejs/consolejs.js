@@ -4,16 +4,15 @@ export function ConsoleJS() {
     const pageContent = `
     <div class="${styles["container"]}">
         <h2>Console JavaScript</h2>
-        <label for="jsInput">Ingresa código JavaScript:</label>
-        <button id=${"openConsoleBtn"}>Ejecutar</button>
+        <button id=${"openConsoleBtn"}>RUN</button>
         <div class="${styles["console-container"]}">
             <div class="${styles["input-container"]}">
-                <h3>Ingresa código JavaScript:</h3>
+                <h3>Your Scripit</h3>
                 <textarea id="jsInput">3+12</textarea>
             </div>
             <div id="outputContainer" class="${styles["output-container"]}">
                 <div class="${styles["title"]}">
-                    <h3>Resultados:</h3>
+                    <h3>Result:</h3>
                 </div>
                 <div class="${styles["output"]}">
                     <input type="text" id="output" class="${styles["output-text"]}" readonly/>
